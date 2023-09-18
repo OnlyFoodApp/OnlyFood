@@ -1,5 +1,9 @@
 
 
+using Application.Extensions;
+using Infrastructure.Extensions;
+using Persistence.Extensions;
+
 namespace OnlyFoodApp
 {
     public class Program
@@ -15,6 +19,12 @@ namespace OnlyFoodApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            // Add services to the container.
+            builder.Services.AddApplicationLayer();
+            builder.Services.AddInfrastructureLayer();
+            builder.Services.AddPersistenceLayer(builder.Configuration);
+
+            builder.Services.AddControllers();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

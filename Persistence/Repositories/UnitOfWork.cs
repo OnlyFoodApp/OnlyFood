@@ -40,6 +40,26 @@ namespace Persistence.Repositories
             return (IGenericRepository<T>)_repositories[type];
         }
 
+
+        public IGenericRepositoryWithNoBaseEntity<T> RepositoryWithNoBaseEntity<T>() where T : BaseAuditableEntityWithoutId
+        {
+            if (_repositories == null)
+                _repositories = new Hashtable();
+
+            var type = typeof(T).Name;
+
+            if (!_repositories.ContainsKey(type))
+            {
+                var repositoryType = typeof(GenericRepositoryWithNoBaseEntity<>);
+
+                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _dbContext);
+
+                _repositories.Add(type, repositoryInstance);
+            }
+
+            return (IGenericRepositoryWithNoBaseEntity<T>)_repositories[type];
+        }
+
         public Task Rollback()
         {
             _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());

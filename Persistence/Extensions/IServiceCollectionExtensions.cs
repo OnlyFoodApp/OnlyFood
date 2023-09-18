@@ -18,6 +18,7 @@ namespace Persistence.Extensions
         {
             //services.AddMappings();
             services.AddDbContext(configuration);
+            services.AddRepositories();
         }
 
         //private static void AddMappings(this IServiceCollection services)
@@ -37,7 +38,10 @@ namespace Persistence.Extensions
         {
             services
                 .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
-                .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+                .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>))
+                .AddTransient(typeof(IGenericRepositoryWithNoBaseEntity<>), typeof(GenericRepositoryWithNoBaseEntity<>))
+                .AddTransient<IAccountRepository, AccountRepository>()
+                .AddTransient<ICustomerRepository, CustomerRepositoryWithNoBaseEntity>();
         }
     }
 }
