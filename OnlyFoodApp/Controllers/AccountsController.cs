@@ -1,4 +1,5 @@
 ﻿using Application.Features.Accounts.Queries.GetAccountsWithPagination;
+using Application.Features.Accounts.Queries.GetAllAccounts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,8 +7,6 @@ using Shared;
 
 namespace OnlyFoodApp.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AccountsController : ApiControllerBase
     {
         private readonly IMediator _mediator;
@@ -15,6 +14,13 @@ namespace OnlyFoodApp.Controllers
         public AccountsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<Result<List<GetAllAccountsDto>>>> Get()
+        {
+            return await _mediator.Send(new GetAllAccountsQuery());
         }
 
         [HttpGet]
