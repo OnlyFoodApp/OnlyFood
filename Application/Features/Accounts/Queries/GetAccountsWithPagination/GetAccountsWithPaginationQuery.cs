@@ -13,7 +13,7 @@ using Shared;
 
 namespace Application.Features.Accounts.Queries.GetAccountsWithPagination
 {
-    public class GetAccountsWithPaginationQuery : IRequest<PaginatedResult<GetAccountsWithPaginationDto>>
+    public record GetAccountsWithPaginationQuery : IRequest<PaginatedResult<GetAccountsWithPaginationDto>>
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
@@ -28,25 +28,24 @@ namespace Application.Features.Accounts.Queries.GetAccountsWithPagination
             PageSize = pageSize;
         }
 
+    }
+    internal class GetAccountsWithPaginationQueryHandler : IRequestHandler<GetAccountsWithPaginationQuery, PaginatedResult<GetAccountsWithPaginationDto>>
+    {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        internal class GetAccountsWithPaginationQueryHandler : IRequestHandler<GetAccountsWithPaginationQuery, PaginatedResult<GetAccountsWithPaginationDto>>
+        public GetAccountsWithPaginationQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            private readonly IUnitOfWork _unitOfWork;
-            private readonly IMapper _mapper;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+        }
 
-            public GetAccountsWithPaginationQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
-            {
-                _unitOfWork = unitOfWork;
-                _mapper = mapper;
-            }
-
-            public async Task<PaginatedResult<GetAccountsWithPaginationDto>> Handle(GetAccountsWithPaginationQuery query, CancellationToken cancellationToken)
-            {
-                return await _unitOfWork.Repository<Account>().Entities
-                    .OrderBy(x => x.FirstName)
-                    .ProjectTo<GetAccountsWithPaginationDto>(_mapper.ConfigurationProvider)
-                    .ToPaginatedListAsync(query.PageNumber, query.PageSize, cancellationToken);
-            }
+        public async Task<PaginatedResult<GetAccountsWithPaginationDto>> Handle(GetAccountsWithPaginationQuery query, CancellationToken cancellationToken)
+        {
+            return await _unitOfWork.Repository<Account>().Entities
+                .OrderBy(x => x.FirstName)
+                .ProjectTo<GetAccountsWithPaginationDto>(_mapper.ConfigurationProvider)
+                .ToPaginatedListAsync(query.PageNumber, query.PageSize, cancellationToken);
         }
     }
 }
