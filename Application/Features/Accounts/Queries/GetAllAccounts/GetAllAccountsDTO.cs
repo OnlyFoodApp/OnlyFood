@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Accounts.Queries.GetAllAccounts
 {
-    public class GetAllAccountsDTO
+    public class GetAllAccountsDto
     {
 
     }
