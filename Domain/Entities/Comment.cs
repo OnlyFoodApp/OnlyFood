@@ -19,7 +19,8 @@ namespace Domain.Entities
         public Guid PostId { get; set; }
         public string Text { get; set; }
         [ForeignKey("Comment")]
-        public Guid? ParentCommentId { get; set; }
+        public int? DisplayIndex { get; set; }
+        public Guid? ParentCommentId { get; set; } = Guid.Empty;
         public virtual Comment ParentComment { get; set; }
         public virtual Post Post { get; set; }
         public virtual ICollection<Comment> ChildComments { get; set; } = new List<Comment>();

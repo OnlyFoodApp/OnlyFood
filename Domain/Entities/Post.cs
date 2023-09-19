@@ -17,6 +17,7 @@ namespace Domain.Entities
         [Required]
         [ForeignKey("Account")]
         public Guid AccountID { get; set; }
+        public int? DisplayIndex { get; set; }
         [Required]
         public string MediaURLs { get; set; }
         [Required]

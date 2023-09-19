@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Interfaces.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,7 @@ namespace Persistence.Extensions
         {
             services
                 .AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork))
+                .AddTransient(typeof(IMediator), typeof(Mediator))
                 .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>))
                 .AddTransient(typeof(IGenericRepositoryWithNoBaseEntity<>), typeof(GenericRepositoryWithNoBaseEntity<>))
                 .AddTransient<IAccountRepository, AccountRepository>()
