@@ -41,24 +41,24 @@ namespace Persistence.Repositories
         }
 
 
-        public IGenericRepositoryWithNoBaseEntity<T> RepositoryWithNoBaseEntity<T>() where T : BaseAuditableEntityWithoutId
-        {
-            if (_repositories == null)
-                _repositories = new Hashtable();
+        //public IGenericRepository<T> Repository<T>() where T : BaseAuditableEntity
+        //{
+        //    if (_repositories == null)
+        //        _repositories = new Hashtable();
 
-            var type = typeof(T).Name;
+        //    var type = typeof(T).Name;
 
-            if (!_repositories.ContainsKey(type))
-            {
-                var repositoryType = typeof(GenericRepositoryWithNoBaseEntity<>);
+        //    if (!_repositories.ContainsKey(type))
+        //    {
+        //        var repositoryType = typeof(GenericRepositoryWithNoBaseEntity<>);
 
-                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _dbContext);
+        //        var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(T)), _dbContext);
 
-                _repositories.Add(type, repositoryInstance);
-            }
+        //        _repositories.Add(type, repositoryInstance);
+        //    }
 
-            return (IGenericRepositoryWithNoBaseEntity<T>)_repositories[type];
-        }
+        //    return (IGenericRepositoryWithNoBaseEntity<T>)_repositories[type];
+        //}
 
         public Task Rollback()
         {

@@ -23,12 +23,16 @@ namespace OnlyFoodApp
             builder.Services.AddApplicationLayer();
             builder.Services.AddInfrastructureLayer();
             builder.Services.AddPersistenceLayer(builder.Configuration);
-
+            builder.Services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true; // Convert URLs to lowercase
+            });
             builder.Services.AddControllers();
             var app = builder.Build();
 
             app.UseSwagger();
             app.UseSwaggerUI();
+            
 
             // Configure the HTTP request pipeline.
 
