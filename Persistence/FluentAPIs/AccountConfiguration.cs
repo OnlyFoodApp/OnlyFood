@@ -13,15 +13,30 @@ namespace Persistence.FluentAPIs
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
-            //builder.ToTable("Account");
-            //builder.HasKey(x => x.Id);
-            //builder.HasOne(c => c.Customer)
-            //    .WithOne(a => a.Account)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.ToTable("Account");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Username).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.Password).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.Email).HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.LastName).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.ProfilePicture).HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.Bio).HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.PhoneNumber).HasMaxLength(10).HasDefaultValue(null);
+            builder.Property(x => x.ActiveStatus).IsRequired().HasDefaultValue(0);
+            builder.Property(x => x.Roles).HasMaxLength(255).HasDefaultValue(null);
 
-            //builder.HasOne(c => c.Chef)
-            //    .WithOne(a => a.Account)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Customer)
+                .WithOne(x => x.Account)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasForeignKey<Customer>(x => x.Id)
+                .HasConstraintName("FK_Customer_Account_AccountId");
+
+            builder.HasOne(x => x.Chef)
+                .WithOne(x => x.Account)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasForeignKey<Chef>(x => x.Id)
+                .HasConstraintName("FK_Chef_Account_AccountId");
         }
     }
 }

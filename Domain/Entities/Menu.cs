@@ -9,13 +9,10 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class Menu : BaseAuditableEntityWithoutId
+    public class Menu : Campaign
     {
-        [Key]
-        public Guid CampaignId { get; set; }
-        [Required]
-        public bool IsDeleted { get; set; }
-
+        public byte IsDeleted { get; set; }
+        public byte IsEdited { get; set; }
         public virtual Campaign Campaign { get; set; }
         public virtual ICollection<Dish> Dishes { get; set; } = new List<Dish>();
 

@@ -13,17 +13,20 @@ namespace Persistence.FluentAPIs
     {
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
-            //builder.ToTable("Menu");
-            //builder.HasKey(x => x.CampaignId);
-            //builder.HasMany(c => c.Dishes)
-            //    .WithOne(a => a.Menu)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.ToTable("Menu");
+            //builder.HasKey(x => x.Id).HasName("Id");
+            builder.Property(x => x.IsDeleted).IsRequired().HasDefaultValue(0);
+            builder.Property(x => x.IsEdited).IsRequired().HasDefaultValue(0);
 
-            //builder.HasKey(x => x.CampaignId);
-            //builder.HasOne(c => c.Campaign)
-            //    .WithOne(a => a.Menu)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Dishes)
+                .WithOne(x => x.Menu)
+                .OnDelete(DeleteBehavior.Cascade);
 
+
+            //builder.HasOne(x => x.Campaign)
+            //    .WithOne(x => x.Menu)
+            //    .OnDelete(DeleteBehavior.Restrict) // Change to ON DELETE NO ACTION
+            //    .HasConstraintName("FK_Menu_Campaign_CampaignId");
         }
     }
 }

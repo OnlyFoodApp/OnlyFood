@@ -10,11 +10,9 @@ namespace Domain.Entities
 {
     public class Payment : BaseAuditableEntity
     {
-        [Required]
         public string Name { get; set; }
         public string? Description { get; set; }
-        [Required]
-        public bool IsActived { get; set; }
+        public byte IsActived { get; set; }
 
         // Navigation Property to represent the orders that use this payment method
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

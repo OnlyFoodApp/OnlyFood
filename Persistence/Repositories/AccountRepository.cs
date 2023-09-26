@@ -20,7 +20,7 @@ namespace Persistence.Repositories
         }
         public async Task<List<Account>> GetAccountByCustomerIdAsync(Guid CustomerId)
         {
-            return await _repository.Entities.Where(x => x.Customer.AccountId == CustomerId).ToListAsync();
+            return await _repository.Entities.Where(x => x.Customer.Id == CustomerId).ToListAsync();
         }
     }
 }

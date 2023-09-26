@@ -10,11 +10,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Domain.Entities
 {
-    public class Chef : BaseAuditableEntityWithoutId
+    public class Chef : Account
     {
-        [Key]
-        public Guid AccountId { get; set; }
-        [Required] 
         public string Experience { get; set; }
         public string? Awards { get; set; }
 

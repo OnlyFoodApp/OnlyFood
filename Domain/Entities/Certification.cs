@@ -11,22 +11,14 @@ namespace Domain.Entities
 {
     public class Certification : BaseAuditableEntity
     {
-        [Required]
         public string Name { get; set; }
-        [Required]
-        [ForeignKey("Chef")]
         public Guid ChefID { get; set; }
-        [Required]
         public string IssuingAuthority { get; set; }
-        [Required]
         public string CertificationDescription { get; set; }
-        [Required]
         public string EffectiveDate { get; set;}
-        [Required]
         public string ExpirationDate { get; set;}
-        [Required]
         public string CertificationURL { get; set;}
-        public bool IsValid { get; set;}
+        public byte IsValid { get; set;}
         public virtual Chef Chef { get; set;}
     }
 }

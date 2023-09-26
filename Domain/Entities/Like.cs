@@ -11,13 +11,13 @@ namespace Domain.Entities
 {
     public class Like : BaseAuditableEntity
     {
-        [Required]
-        [ForeignKey("Post")]
+
         public Guid PostId { get; set; }
-        //[Required]
-        //[ForeignKey("Account")]
-        //public Guid AccountId { get; set; }
-        [Required]
-        public bool IsLiked { get; set; }
+
+        public Guid AccountId { get; set; }
+        public byte IsLiked { get; set; }
+
+        public Post Post { get; set; }
+        public Account Account { get; set; }
     }
 }
