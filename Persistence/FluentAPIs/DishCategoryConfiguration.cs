@@ -13,11 +13,16 @@ namespace Persistence.FluentAPIs
     {
         public void Configure(EntityTypeBuilder<DishCategory> builder)
         {
-            //builder.ToTable("DishCategory");
-            //builder.HasKey(x => x.Id);
-            //builder.HasMany(c => c.Dishes)
-            //    .WithOne(a => a.DishCategory)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.ToTable("DishCategory");
+            builder.HasKey(x => x.Id).HasName("DishCategoryId");
+            builder.Property(x => x.Name).IsRequired().HasDefaultValue(null).HasMaxLength(255);
+            builder.Property(x => x.Description).IsRequired().HasDefaultValue(null).HasMaxLength(255);
+            builder.Property(x => x.Image).IsRequired().HasDefaultValue(null).HasMaxLength(255);
+            builder.Property(x => x.isActived).IsRequired().HasDefaultValue(1);
+
+            builder.HasMany(x => x.Dishes)
+                .WithOne(x => x.DishCategory)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

@@ -11,16 +11,15 @@ namespace Domain.Entities
 {
     public class OrderDetail : BaseAuditableEntity
     {
-        [Required]
         public Guid OrderId { get; set; }
-        [Required]
 
         public Guid DishId { get; set; }
-        [Required]
         public int Quantity { get; set; }
-        [Required]
         public float UnitPrice { get; set; }
-        public bool IsCancelled { get; set; }
+        public byte IsCancelled { get; set; }
+
+        public Order Order { get; set; }
+        public Dish Dish { get; set; }
 
     }
 }

@@ -13,11 +13,18 @@ namespace Persistence.FluentAPIs
     {
         public void Configure(EntityTypeBuilder<Certification> builder)
         {
-            //builder.ToTable("Certification");
-            //builder.HasKey(x => x.Id);
-            //builder.HasOne(c => c.)
-            //    .WithMany(a => a.Account)
-            //    .OnDelete(DeleteBehavior.Cascade);
+            builder.ToTable("Certification");
+            builder.HasKey(x => x.Id).HasName("CertificationId");
+            builder.Property(x => x.Name).IsRequired().HasDefaultValue(null).HasMaxLength(255);
+            builder.Property(x => x.CertificationDescription).IsRequired().HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.EffectiveDate).IsRequired().HasDefaultValue(null);
+            builder.Property(x => x.ExpirationDate).IsRequired().HasDefaultValue(null);
+            builder.Property(x => x.IssuingAuthority).IsRequired().HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.CertificationURL).IsRequired().HasMaxLength(255).HasDefaultValue(null);
+            builder.Property(x => x.IsValid).IsRequired().HasDefaultValue(0);
+            builder.HasOne(x => x.Chef)
+                .WithMany(x => x.Certifications)
+                .HasForeignKey(x => x.ChefID);
 
         }
     }
