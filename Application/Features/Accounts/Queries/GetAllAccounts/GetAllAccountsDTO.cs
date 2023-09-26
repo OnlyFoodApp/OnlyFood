@@ -21,7 +21,5 @@ namespace Application.Features.Accounts.Queries.GetAllAccounts
         public Enum Gender { get; set; }
         public string ProfilePicture { get; set; }
         public string Bio { get; set; }
-        public int ActiveStatus { get; set; }
-        public int Roles { get; set; }
     }
 }

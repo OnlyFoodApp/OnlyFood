@@ -28,6 +28,7 @@ namespace Application.Features.Accounts.Queries.GetAllAccounts
 
         public async Task<Result<List<GetAllAccountsDto>>> Handle(GetAllAccountsQuery request, CancellationToken cancellationToken)
         {
+
             var accounts = await _unitOfWork.Repository<Account>().Entities
                 .ProjectTo<GetAllAccountsDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
