@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Numerics;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Common.Mappings;
+using Application.Features.Accounts.Commands.CreateAccount;
 using Application.Interfaces.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Shared;
 
-namespace Application.Features.Accounts.Commands.CreateAccount
+namespace Application.Features.Chef.Commands.CreateChef
 {
-    public record CreateAccountCommand : IRequest<Result<Guid>>, IMapFrom<Account>
+    public class CreateChefCommand : IRequest<Result<Guid>>, IMapFrom<Account>
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public GenderEnum Gender { get; set; }
-        public int Roles { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public GenderEnum Gender { get; set; }
+    public int Roles { get; set; }
 
     }
 
