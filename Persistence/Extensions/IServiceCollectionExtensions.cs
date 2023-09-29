@@ -42,7 +42,8 @@ namespace Persistence.Extensions
                 .AddTransient(typeof(IMediator), typeof(Mediator))
                 .AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>))
                 .AddTransient<IAccountRepository, AccountRepository>()
-                .AddTransient<ICustomerRepository, CustomerRepository>();
+                .AddTransient<ICustomerRepository, CustomerRepository>()
+                .AddTransient<IChefRepository, ChefRepository>();
         }
     }
 }

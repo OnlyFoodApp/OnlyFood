@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Common.Interface;
+using Shared;
 
 namespace Application.Interfaces.Repositories
 {

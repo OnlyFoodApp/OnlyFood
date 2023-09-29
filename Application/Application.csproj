@@ -24,6 +24,9 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Features\Accounts\Commands\DeleteAccount\" />
     <Folder Include="Features\Accounts\Commands\UpdateAccount\" />
+    <Folder Include="Features\Chef\Commands\DeleteChef\" />
+    <Folder Include="Features\Chef\Commands\UpdateChef\" />
+    <Folder Include="Features\Chef\Querries\GetChefWithEmail\" />
     <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
     <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
     <Folder Include="Features\Customers\Queries\" />
