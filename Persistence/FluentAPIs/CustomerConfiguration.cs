@@ -22,10 +22,11 @@ namespace Persistence.FluentAPIs
                 .WithOne(x => x.Customer)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //builder.HasOne(x => x.Account)
+            //builder.HasOne<Account>(x => x.Account)
             //    .WithOne(x => x.Customer)
             //    .OnDelete(DeleteBehavior.Restrict) // Change to ON DELETE NO ACTION
-            //    .HasConstraintName("FK_Customer_Account_AccountId");
+            //    .HasForeignKey<Customer>(x => x.AccountId);
+            //.HasConstraintName("FK_Customer_Account_AccountId");
         }
     }
 }

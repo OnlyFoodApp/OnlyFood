@@ -15,8 +15,6 @@ namespace Domain.Entities
         public Guid PostId { get; set; }
 
         public Guid AccountId { get; set; }
-        public byte IsLiked { get; set; }
-
         public Post Post { get; set; }
         public Account Account { get; set; }
     }

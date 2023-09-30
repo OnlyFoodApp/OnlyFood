@@ -29,14 +29,14 @@ namespace Persistence.FluentAPIs
             builder.HasOne(x => x.Customer)
                 .WithOne(x => x.Account)
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasForeignKey<Customer>(x => x.Id)
-                .HasConstraintName("FK_Customer_Account_AccountId");
+                .HasForeignKey<Customer>(x => x.AccountId);
+            //.HasConstraintName("FK_Customer_Account_AccountId");
 
             builder.HasOne(x => x.Chef)
-                .WithOne(x => x.Account)
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasForeignKey<Chef>(x => x.Id)
-                .HasConstraintName("FK_Chef_Account_AccountId");
+                    .WithOne(x => x.Account)
+                    .OnDelete(DeleteBehavior.Restrict)
+                .HasForeignKey<Chef>(x => x.AccountId);
+            //.HasConstraintName("FK_Chef_Account_AccountId");
         }
     }
 }

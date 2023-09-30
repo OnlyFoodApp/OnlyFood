@@ -94,8 +94,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Account", (string)null);
-
-                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Domain.Entities.Campaign", b =>
@@ -135,7 +133,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("StartDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 26, 21, 34, 48, 271, DateTimeKind.Local).AddTicks(3552));
+                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 801, DateTimeKind.Local).AddTicks(3557));
 
                     b.Property<byte>("Status")
                         .ValueGeneratedOnAdd()
@@ -147,8 +145,6 @@ namespace Persistence.Migrations
                     b.HasIndex("ChefID");
 
                     b.ToTable("Campaign", (string)null);
-
-                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Domain.Entities.Certification", b =>
@@ -213,6 +209,44 @@ namespace Persistence.Migrations
                     b.ToTable("Certification", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Chef", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Awards")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Experience")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique()
+                        .HasFilter("[AccountId] IS NOT NULL");
+
+                    b.ToTable("Chef", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Comment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -229,7 +263,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 26, 21, 34, 48, 273, DateTimeKind.Local).AddTicks(4814));
+                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 802, DateTimeKind.Local).AddTicks(2046));
 
                     b.Property<int?>("DisplayIndex")
                         .HasColumnType("int");
@@ -274,6 +308,46 @@ namespace Persistence.Migrations
                     b.ToTable("Comment", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("RewardsPoints")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique()
+                        .HasFilter("[AccountId] IS NOT NULL");
+
+                    b.ToTable("Customer", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Dish", b =>
                 {
                     b.Property<Guid>("Id")
@@ -287,7 +361,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 26, 21, 34, 48, 274, DateTimeKind.Local).AddTicks(8829));
+                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 803, DateTimeKind.Local).AddTicks(1043));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -400,9 +474,6 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte>("IsLiked")
-                        .HasColumnType("tinyint");
-
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -420,6 +491,45 @@ namespace Persistence.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("Like", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Menu", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CampaignId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0);
+
+                    b.Property<byte>("IsEdited")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint")
+                        .HasDefaultValue((byte)0);
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId")
+                        .IsUnique();
+
+                    b.ToTable("Menu", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -459,7 +569,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 26, 21, 34, 48, 276, DateTimeKind.Local).AddTicks(8886));
+                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 804, DateTimeKind.Local).AddTicks(946));
 
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");
@@ -626,55 +736,6 @@ namespace Persistence.Migrations
                     b.ToTable("Post", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Chef", b =>
-                {
-                    b.HasBaseType("Domain.Entities.Account");
-
-                    b.Property<string>("Awards")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Experience")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.ToTable("Chef", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Customer", b =>
-                {
-                    b.HasBaseType("Domain.Entities.Account");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("RewardsPoints")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
-                    b.ToTable("Customer", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Menu", b =>
-                {
-                    b.HasBaseType("Domain.Entities.Campaign");
-
-                    b.Property<byte>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasDefaultValue((byte)0);
-
-                    b.Property<byte>("IsEdited")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint")
-                        .HasDefaultValue((byte)0);
-
-                    b.ToTable("Menu", (string)null);
-                });
-
             modelBuilder.Entity("Domain.Entities.Campaign", b =>
                 {
                     b.HasOne("Domain.Entities.Chef", "Chef")
@@ -695,6 +756,16 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Chef");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Chef", b =>
+                {
+                    b.HasOne("Domain.Entities.Account", "Account")
+                        .WithOne("Chef")
+                        .HasForeignKey("Domain.Entities.Chef", "AccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Domain.Entities.Comment", b =>
@@ -723,6 +794,16 @@ namespace Persistence.Migrations
                     b.Navigation("ParentComment");
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.HasOne("Domain.Entities.Account", "Account")
+                        .WithOne("Customer")
+                        .HasForeignKey("Domain.Entities.Customer", "AccountId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Account");
                 });
 
             modelBuilder.Entity("Domain.Entities.Dish", b =>
@@ -761,6 +842,17 @@ namespace Persistence.Migrations
                     b.Navigation("Account");
 
                     b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Menu", b =>
+                {
+                    b.HasOne("Domain.Entities.Campaign", "Campaign")
+                        .WithOne("Menu")
+                        .HasForeignKey("Domain.Entities.Menu", "CampaignId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Campaign");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -812,51 +904,13 @@ namespace Persistence.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Chef", b =>
-                {
-                    b.HasOne("Domain.Entities.Account", "Account")
-                        .WithOne("Chef")
-                        .HasForeignKey("Domain.Entities.Chef", "Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Chef_Account_AccountId");
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Customer", b =>
-                {
-                    b.HasOne("Domain.Entities.Account", "Account")
-                        .WithOne("Customer")
-                        .HasForeignKey("Domain.Entities.Customer", "Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Customer_Account_AccountId");
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Menu", b =>
-                {
-                    b.HasOne("Domain.Entities.Campaign", "Campaign")
-                        .WithOne("Menu")
-                        .HasForeignKey("Domain.Entities.Menu", "Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_Menu_Campaign_CampaignId");
-
-                    b.Navigation("Campaign");
-                });
-
             modelBuilder.Entity("Domain.Entities.Account", b =>
                 {
-                    b.Navigation("Chef")
-                        .IsRequired();
+                    b.Navigation("Chef");
 
                     b.Navigation("Comments");
 
-                    b.Navigation("Customer")
-                        .IsRequired();
+                    b.Navigation("Customer");
 
                     b.Navigation("Likes");
 
@@ -865,13 +919,24 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Campaign", b =>
                 {
-                    b.Navigation("Menu")
-                        .IsRequired();
+                    b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Chef", b =>
+                {
+                    b.Navigation("Campaigns");
+
+                    b.Navigation("Certifications");
                 });
 
             modelBuilder.Entity("Domain.Entities.Comment", b =>
                 {
                     b.Navigation("ChildComments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Domain.Entities.Dish", b =>
@@ -880,6 +945,11 @@ namespace Persistence.Migrations
                 });
 
             modelBuilder.Entity("Domain.Entities.DishCategory", b =>
+                {
+                    b.Navigation("Dishes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Menu", b =>
                 {
                     b.Navigation("Dishes");
                 });
@@ -899,23 +969,6 @@ namespace Persistence.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Chef", b =>
-                {
-                    b.Navigation("Campaigns");
-
-                    b.Navigation("Certifications");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Customer", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Menu", b =>
-                {
-                    b.Navigation("Dishes");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,7 +25,7 @@ namespace Persistence.FluentAPIs
 
             //builder.HasOne(x => x.Campaign)
             //    .WithOne(x => x.Menu)
-            //    .OnDelete(DeleteBehavior.Restrict) // Change to ON DELETE NO ACTION
+            //    .HasForeignKey<Menu>(x => x.CampaignId)
             //    .HasConstraintName("FK_Menu_Campaign_CampaignId");
         }
     }

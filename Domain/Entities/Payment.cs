@@ -15,6 +15,6 @@ namespace Domain.Entities
         public byte IsActived { get; set; }
 
         // Navigation Property to represent the orders that use this payment method
-        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual ICollection<Order>? Orders { get; set; }
     }
 }

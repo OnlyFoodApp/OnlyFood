@@ -10,15 +10,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Domain.Entities
 {
-    public class Chef : Account
+    public class Chef : BaseAuditableEntity
     {
-        public string Experience { get; set; }
+        public string? Experience { get; set; }
         public string? Awards { get; set; }
 
         // Navigation Property
-        public virtual Account Account { get; set; }
-        public virtual ICollection<Campaign> Campaigns { get; set; } = new List<Campaign>();
-        public virtual ICollection<Certification> Certifications { get; set; } = new List<Certification>();
+        public virtual Account? Account { get; set; }
+        public Guid? AccountId { get; set; }
+        public virtual ICollection<Campaign>? Campaigns { get; set; }
+        public virtual ICollection<Certification>? Certifications { get; set; }
 
 
     }

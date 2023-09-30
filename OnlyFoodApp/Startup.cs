@@ -24,7 +24,7 @@ namespace OnlyFoodApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())); // Replace with your assembly containing handlers
-            services.AddMediatR(typeof(CreateAccountCommand));
+            //services.AddMediatR(typeof(CreateAccountCommand));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

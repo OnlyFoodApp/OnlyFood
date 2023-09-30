@@ -15,7 +15,7 @@ namespace Domain.Entities
         public string? Image { get; set;}
         public byte isActived { get; set; }
 
-        public virtual ICollection<Dish> Dishes { get; set; } = new List<Dish>();
+        public virtual ICollection<Dish>? Dishes { get; set; }
 
     }
 }

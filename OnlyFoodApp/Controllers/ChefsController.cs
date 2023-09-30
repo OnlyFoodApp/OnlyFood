@@ -1,8 +1,10 @@
 ﻿using Application.Features.Accounts.Commands.CreateAccount;
 using Application.Features.Accounts.Queries.GetAccountsWithPagination;
 using Application.Features.Accounts.Queries.GetAllAccounts;
+using Application.Features.Chef.Commands.CreateChef;
 using Application.Features.Chef.Querries.GetAllChefs;
 using Application.Features.Chef.Querries.GetChefsWithPagination;
+using Application.Features.Chef.Querries.GetChefWithId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,10 +49,17 @@ namespace OnlyFoodApp.Controllers
 
 
         [HttpPost]
-        public async Task<Result<Guid>> CreateAccount(CreateAccountCommand account)
+        public async Task<Result<Guid>> CreateAccount(CreateChefCommand account)
         {
             var a = account;
             return await _mediator.Send(account);
+        }
+
+        [HttpGet]
+        [Route("id")]
+        public async Task<ActionResult<Result<GetChefWithIdDto>>> GetChefByIdAsync([FromQuery] String id)
+        {
+            return await _mediator.Send(new GetChefWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
         }
     }
 }

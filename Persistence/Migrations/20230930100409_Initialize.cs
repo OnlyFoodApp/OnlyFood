@@ -81,14 +81,19 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Experience = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Awards = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Awards = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Chef", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Chef_Account_AccountId",
-                        column: x => x.Id,
+                        column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -100,14 +105,19 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    RewardsPoints = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
+                    RewardsPoints = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customer", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Customer_Account_AccountId",
-                        column: x => x.Id,
+                        column: x => x.AccountId,
                         principalTable: "Account",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -148,7 +158,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CampaignName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 26, 21, 34, 48, 271, DateTimeKind.Local).AddTicks(3552)),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 801, DateTimeKind.Local).AddTicks(3557)),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ChefID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
@@ -202,7 +212,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 26, 21, 34, 48, 276, DateTimeKind.Local).AddTicks(8886)),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 804, DateTimeKind.Local).AddTicks(946)),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ExpectedDeliveryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -244,7 +254,7 @@ namespace Persistence.Migrations
                     IsDeleted = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
                     ISEdited = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 26, 21, 34, 48, 273, DateTimeKind.Local).AddTicks(4814)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 802, DateTimeKind.Local).AddTicks(2046)),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -278,7 +288,6 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsLiked = table.Column<byte>(type: "tinyint", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -307,14 +316,19 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsDeleted = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
-                    IsEdited = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0)
+                    IsEdited = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
+                    CampaignId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menu", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Menu_Campaign_CampaignId",
-                        column: x => x.Id,
+                        column: x => x.CampaignId,
                         principalTable: "Campaign",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -334,7 +348,7 @@ namespace Persistence.Migrations
                     DishImage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     DishIngredients = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 26, 21, 34, 48, 274, DateTimeKind.Local).AddTicks(8829)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 803, DateTimeKind.Local).AddTicks(1043)),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -398,6 +412,13 @@ namespace Persistence.Migrations
                 column: "ChefID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Chef_AccountId",
+                table: "Chef",
+                column: "AccountId",
+                unique: true,
+                filter: "[AccountId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comment_AccountId",
                 table: "Comment",
                 column: "AccountId");
@@ -411,6 +432,13 @@ namespace Persistence.Migrations
                 name: "IX_Comment_PostId",
                 table: "Comment",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customer_AccountId",
+                table: "Customer",
+                column: "AccountId",
+                unique: true,
+                filter: "[AccountId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Dish_DishCategoryId",
@@ -431,6 +459,12 @@ namespace Persistence.Migrations
                 name: "IX_Like_PostId",
                 table: "Like",
                 column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Menu_CampaignId",
+                table: "Menu",
+                column: "CampaignId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_CustomerId",

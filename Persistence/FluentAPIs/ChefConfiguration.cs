@@ -20,10 +20,11 @@ namespace Persistence.FluentAPIs
                 .WithOne(x => x.Chef)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //builder.HasOne(x => x.Account)
+            //builder.HasOne<Account>(x => x.Account)
             //    .WithOne(x => x.Chef)
-            //    .OnDelete(DeleteBehavior.Restrict) // Change to ON DELETE NO ACTION
-            //    .HasConstraintName("FK_Chef_Account_AccountId");
+            //    .HasForeignKey<Chef>(x => x.AccountId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+            //.HasConstraintName("FK_Chef_Account_AccountId");
         }
 
     }

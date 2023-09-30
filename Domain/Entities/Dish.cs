@@ -19,7 +19,7 @@ namespace Domain.Entities
         public byte IsDeleted { get; set; }
         public string? DishImage { get; set; }
         public string? DishIngredients { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
 
         public virtual DishCategory DishCategory { get; set; }
         public virtual Menu Menu { get; set; }

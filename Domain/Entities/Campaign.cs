@@ -17,7 +17,7 @@ namespace Domain.Entities
         public DateTime EndDate { get; set;}
         public Guid ChefID { get; set;}
         public byte Status { get; set;}
-        public virtual Menu Menu { get; set;}
+        public virtual Menu? Menu { get; set;}
         public virtual Chef Chef { get; set;}
         
     }

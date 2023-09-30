@@ -22,8 +22,8 @@ namespace Domain.Entities
         public virtual Customer Customer { get; set; }
 
         // Navigation Property to represent the payment method used for this order
-        public virtual Payment Payment { get; set; }
-        public virtual ICollection<OrderDetail> OrdersDetails { get; set; } = new List<OrderDetail>();
+        public virtual Payment? Payment { get; set; }
+        public virtual ICollection<OrderDetail>? OrdersDetails { get; set; }
 
     }
 }

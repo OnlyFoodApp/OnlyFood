@@ -10,10 +10,10 @@ namespace Application.Features.Chef.Commands.CreateChef
 {
     public class ChefCreatedEvent : BaseEvent
     {
-    public Account Chef { get; }
+    public Domain.Entities.Chef Chef { get; }
 
 
-    public ChefCreatedEvent(Account chef)
+    public ChefCreatedEvent(Domain.Entities.Chef chef)
     {
         Chef = chef;
     }

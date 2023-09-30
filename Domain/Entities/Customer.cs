@@ -10,13 +10,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Entities
 {   
-    public class Customer : Account
+    public class Customer : BaseAuditableEntity
     {
         public string? Address { get; set; }
         public int RewardsPoints { get; set; }
 
         // Navigation Property
-        public Account Account { get; set; }
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public Account? Account { get; set; }
+        public Guid? AccountId { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

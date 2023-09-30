@@ -25,10 +25,10 @@ namespace Domain.Entities
         public int Roles { get; set; }
 
         // Navigation Property
-        public virtual Customer Customer { get; set; }
-        public virtual Chef Chef { get; set; }
-        public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
-        public virtual ICollection<Like> Likes { get; set; } = new List<Like>();
-        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual Customer? Customer { get; set; }
+        public virtual Chef? Chef { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
+        public virtual ICollection<Like>? Likes { get; set; }
+        public virtual ICollection<Comment>? Comments { get; set; }
     }
 }

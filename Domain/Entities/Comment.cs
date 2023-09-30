@@ -19,7 +19,7 @@ namespace Domain.Entities
         public virtual Comment ParentComment { get; set; }
         public virtual Post Post { get; set; }
         public virtual Account Account { get; set; }
-        public virtual ICollection<Comment> ChildComments { get; set; } = new List<Comment>();
+        public virtual ICollection<Comment>? ChildComments { get; set; }
         public byte IsDeleted { get; set; }
             
         public byte ISEdited { get; set; }
