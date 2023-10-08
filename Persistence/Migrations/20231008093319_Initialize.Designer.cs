@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230930100409_Initialize")]
+    [Migration("20231008093319_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -97,6 +97,206 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Account", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("67abe55d-4cac-4c23-9d32-2395f181fae1"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for John Doe.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9249),
+                            DateOfBirth = new DateTime(1985, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "john.doe@example.com",
+                            FirstName = "John",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9263),
+                            LastName = "Doe",
+                            Password = "securepassword1",
+                            PhoneNumber = "1234567890",
+                            ProfilePicture = "/profile/john_doe.jpg",
+                            Roles = 1,
+                            Username = "john_doe"
+                        },
+                        new
+                        {
+                            Id = new Guid("8da4e108-36a0-4135-9987-ae45ad0a2182"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Jane Smith.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9278),
+                            DateOfBirth = new DateTime(1990, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jane.smith@example.com",
+                            FirstName = "Jane",
+                            Gender = 1,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9281),
+                            LastName = "Smith",
+                            Password = "p@ssw0rd",
+                            PhoneNumber = "9876543210",
+                            ProfilePicture = "/profile/jane_smith.jpg",
+                            Roles = 2,
+                            Username = "jane_smith"
+                        },
+                        new
+                        {
+                            Id = new Guid("a8aadcaf-92cc-4bf7-abd1-4b9ce4646505"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Bob Jones.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9292),
+                            DateOfBirth = new DateTime(1988, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "bob.jones@example.com",
+                            FirstName = "Bob",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9294),
+                            LastName = "Jones",
+                            Password = "strongpass123",
+                            PhoneNumber = "5556667777",
+                            ProfilePicture = "/profile/bob_jones.jpg",
+                            Roles = 2,
+                            Username = "bob_jones"
+                        },
+                        new
+                        {
+                            Id = new Guid("65d650ab-7e48-4f34-927e-b99a4768a1cf"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Sara Wilson.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9363),
+                            DateOfBirth = new DateTime(1992, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "sara.wilson@example.com",
+                            FirstName = "Sara",
+                            Gender = 1,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9365),
+                            LastName = "Wilson",
+                            Password = "sara123",
+                            PhoneNumber = "1112223333",
+                            ProfilePicture = "/profile/sara_wilson.jpg",
+                            Roles = 2,
+                            Username = "sara_wilson"
+                        },
+                        new
+                        {
+                            Id = new Guid("f29edd2d-34a9-43cc-bea8-66ead19921c8"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Mike Jackson.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9374),
+                            DateOfBirth = new DateTime(1980, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "mike.jackson@example.com",
+                            FirstName = "Mike",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9376),
+                            LastName = "Jackson",
+                            Password = "mikepass",
+                            PhoneNumber = "3334445555",
+                            ProfilePicture = "/profile/mike_jackson.jpg",
+                            Roles = 2,
+                            Username = "mike_jackson"
+                        },
+                        new
+                        {
+                            Id = new Guid("5800c4f2-1bce-41a7-a909-92b0336f8b37"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Nguyen Phat.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9385),
+                            DateOfBirth = new DateTime(2002, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "nguyenphat2711@gmail.com",
+                            FirstName = "Nguyen",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9387),
+                            LastName = "Phat",
+                            Password = "Phat@2711",
+                            PhoneNumber = "0812400096",
+                            ProfilePicture = "/profile/phatnt.jpg",
+                            Roles = 2,
+                            Username = "fatnofat"
+                        },
+                        new
+                        {
+                            Id = new Guid("3f2c2327-3b07-4fa9-9bff-e5e1857710ba"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Nguyen Phat.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9395),
+                            DateOfBirth = new DateTime(2002, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "khoatruong@gmail.com",
+                            FirstName = "Truong",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9396),
+                            LastName = "Khoa",
+                            Password = "Khoa2k17",
+                            PhoneNumber = "0123456789",
+                            ProfilePicture = "/profile/phatnt.jpg",
+                            Roles = 2,
+                            Username = "khoatruong"
+                        },
+                        new
+                        {
+                            Id = new Guid("a7929b50-8471-455e-9768-05bc9dc3014c"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Nguyen Van Dung.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9418),
+                            DateOfBirth = new DateTime(2002, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Dungkinaysinhviengioi@gmail.com",
+                            FirstName = "Nguyen",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9419),
+                            LastName = "Van Dung",
+                            Password = "Dunghocgioivcl",
+                            PhoneNumber = "0123456789",
+                            ProfilePicture = "/profile/dungnv.jpg",
+                            Roles = 2,
+                            Username = "vandung"
+                        },
+                        new
+                        {
+                            Id = new Guid("9a757dcc-dc7c-45e2-90f7-059e8eec4f0f"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Truong Le Tuan Kiet.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9429),
+                            DateOfBirth = new DateTime(2002, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "kiethathayvai@gmail.com",
+                            FirstName = "Truong",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9430),
+                            LastName = "Le Tuan Kiet",
+                            Password = "Kiethocgioihayhat",
+                            PhoneNumber = "0123456789",
+                            ProfilePicture = "/profile/kiettlt.jpg",
+                            Roles = 2,
+                            Username = "truongletuankiet"
+                        },
+                        new
+                        {
+                            Id = new Guid("f82e0e64-c90b-4426-89de-7edae9fcd661"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Le Thi Thu Trang.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9439),
+                            DateOfBirth = new DateTime(2002, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "trangxinhgai@gmail.com",
+                            FirstName = "Le",
+                            Gender = 1,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9440),
+                            LastName = "Thi Thu Trang",
+                            Password = "trangxinhxinhhihi",
+                            PhoneNumber = "0123456789",
+                            ProfilePicture = "/profile/trangltt.jpg",
+                            Roles = 2,
+                            Username = "trangxinhgai"
+                        },
+                        new
+                        {
+                            Id = new Guid("ed855c6c-63e4-46c4-b713-576aeabcd011"),
+                            ActiveStatus = 1,
+                            Bio = "Bio information for Nguyen Duc Binh.",
+                            CreatedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9449),
+                            DateOfBirth = new DateTime(2002, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "ducbinhnguyen@gmail.com",
+                            FirstName = "Nguyen",
+                            Gender = 0,
+                            LastModifiedDate = new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9450),
+                            LastName = "Duc Binh",
+                            Password = "binhleader",
+                            PhoneNumber = "0123456789",
+                            ProfilePicture = "/profile/binhnd.jpg",
+                            Roles = 2,
+                            Username = "ducbinhnguyen"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Campaign", b =>
@@ -136,7 +336,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("StartDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 801, DateTimeKind.Local).AddTicks(3557));
+                        .HasDefaultValue(new DateTime(2023, 10, 8, 16, 33, 19, 16, DateTimeKind.Local).AddTicks(1655));
 
                     b.Property<byte>("Status")
                         .ValueGeneratedOnAdd()
@@ -266,7 +466,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 802, DateTimeKind.Local).AddTicks(2046));
+                        .HasDefaultValue(new DateTime(2023, 10, 8, 16, 33, 19, 18, DateTimeKind.Local).AddTicks(7670));
 
                     b.Property<int?>("DisplayIndex")
                         .HasColumnType("int");
@@ -364,7 +564,7 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 803, DateTimeKind.Local).AddTicks(1043));
+                        .HasDefaultValue(new DateTime(2023, 10, 8, 16, 33, 19, 20, DateTimeKind.Local).AddTicks(5064));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -572,7 +772,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 9, 30, 17, 4, 9, 804, DateTimeKind.Local).AddTicks(946));
+                        .HasDefaultValue(new DateTime(2023, 10, 8, 16, 33, 19, 21, DateTimeKind.Local).AddTicks(8843));
 
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");

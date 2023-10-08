@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
@@ -158,7 +160,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CampaignName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 801, DateTimeKind.Local).AddTicks(3557)),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 10, 8, 16, 33, 19, 16, DateTimeKind.Local).AddTicks(1655)),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ChefID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
@@ -212,7 +214,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 804, DateTimeKind.Local).AddTicks(946)),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 10, 8, 16, 33, 19, 21, DateTimeKind.Local).AddTicks(8843)),
                     CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PaymentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ExpectedDeliveryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -254,7 +256,7 @@ namespace Persistence.Migrations
                     IsDeleted = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
                     ISEdited = table.Column<byte>(type: "tinyint", nullable: false, defaultValue: (byte)0),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 802, DateTimeKind.Local).AddTicks(2046)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 10, 8, 16, 33, 19, 18, DateTimeKind.Local).AddTicks(7670)),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -348,7 +350,7 @@ namespace Persistence.Migrations
                     DishImage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     DishIngredients = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 9, 30, 17, 4, 9, 803, DateTimeKind.Local).AddTicks(1043)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 10, 8, 16, 33, 19, 20, DateTimeKind.Local).AddTicks(5064)),
                     ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -399,6 +401,24 @@ namespace Persistence.Migrations
                         principalTable: "Order",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Account",
+                columns: new[] { "Id", "ActiveStatus", "Bio", "CreatedBy", "CreatedDate", "DateOfBirth", "Email", "FirstName", "Gender", "LastModifiedDate", "LastName", "ModifiedBy", "Password", "PhoneNumber", "ProfilePicture", "Roles", "Username" },
+                values: new object[,]
+                {
+                    { new Guid("3f2c2327-3b07-4fa9-9bff-e5e1857710ba"), 1, "Bio information for Nguyen Phat.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9395), new DateTime(2002, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "khoatruong@gmail.com", "Truong", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9396), "Khoa", null, "Khoa2k17", "0123456789", "/profile/phatnt.jpg", 2, "khoatruong" },
+                    { new Guid("5800c4f2-1bce-41a7-a909-92b0336f8b37"), 1, "Bio information for Nguyen Phat.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9385), new DateTime(2002, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "nguyenphat2711@gmail.com", "Nguyen", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9387), "Phat", null, "Phat@2711", "0812400096", "/profile/phatnt.jpg", 2, "fatnofat" },
+                    { new Guid("65d650ab-7e48-4f34-927e-b99a4768a1cf"), 1, "Bio information for Sara Wilson.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9363), new DateTime(1992, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "sara.wilson@example.com", "Sara", 1, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9365), "Wilson", null, "sara123", "1112223333", "/profile/sara_wilson.jpg", 2, "sara_wilson" },
+                    { new Guid("67abe55d-4cac-4c23-9d32-2395f181fae1"), 1, "Bio information for John Doe.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9249), new DateTime(1985, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "john.doe@example.com", "John", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9263), "Doe", null, "securepassword1", "1234567890", "/profile/john_doe.jpg", 1, "john_doe" },
+                    { new Guid("8da4e108-36a0-4135-9987-ae45ad0a2182"), 1, "Bio information for Jane Smith.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9278), new DateTime(1990, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@example.com", "Jane", 1, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9281), "Smith", null, "p@ssw0rd", "9876543210", "/profile/jane_smith.jpg", 2, "jane_smith" },
+                    { new Guid("9a757dcc-dc7c-45e2-90f7-059e8eec4f0f"), 1, "Bio information for Truong Le Tuan Kiet.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9429), new DateTime(2002, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "kiethathayvai@gmail.com", "Truong", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9430), "Le Tuan Kiet", null, "Kiethocgioihayhat", "0123456789", "/profile/kiettlt.jpg", 2, "truongletuankiet" },
+                    { new Guid("a7929b50-8471-455e-9768-05bc9dc3014c"), 1, "Bio information for Nguyen Van Dung.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9418), new DateTime(2002, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dungkinaysinhviengioi@gmail.com", "Nguyen", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9419), "Van Dung", null, "Dunghocgioivcl", "0123456789", "/profile/dungnv.jpg", 2, "vandung" },
+                    { new Guid("a8aadcaf-92cc-4bf7-abd1-4b9ce4646505"), 1, "Bio information for Bob Jones.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9292), new DateTime(1988, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "bob.jones@example.com", "Bob", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9294), "Jones", null, "strongpass123", "5556667777", "/profile/bob_jones.jpg", 2, "bob_jones" },
+                    { new Guid("ed855c6c-63e4-46c4-b713-576aeabcd011"), 1, "Bio information for Nguyen Duc Binh.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9449), new DateTime(2002, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "ducbinhnguyen@gmail.com", "Nguyen", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9450), "Duc Binh", null, "binhleader", "0123456789", "/profile/binhnd.jpg", 2, "ducbinhnguyen" },
+                    { new Guid("f29edd2d-34a9-43cc-bea8-66ead19921c8"), 1, "Bio information for Mike Jackson.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9374), new DateTime(1980, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "mike.jackson@example.com", "Mike", 0, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9376), "Jackson", null, "mikepass", "3334445555", "/profile/mike_jackson.jpg", 2, "mike_jackson" },
+                    { new Guid("f82e0e64-c90b-4426-89de-7edae9fcd661"), 1, "Bio information for Le Thi Thu Trang.", null, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9439), new DateTime(2002, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "trangxinhgai@gmail.com", "Le", 1, new DateTime(2023, 10, 8, 16, 33, 19, 14, DateTimeKind.Local).AddTicks(9440), "Thi Thu Trang", null, "trangxinhxinhhihi", "0123456789", "/profile/trangltt.jpg", 2, "trangxinhgai" }
                 });
 
             migrationBuilder.CreateIndex(
