@@ -16,15 +16,15 @@ namespace OnlyFoodApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-//#if DEBUG
+#if DEBUG
 
 
-//            // Add services to the container.
-//            builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
-//#else
+            // Add services to the container.
+            builder.Configuration.AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true);
+#else 
             // Add services to the container.
             builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-//#endif
+#endif
             builder.Configuration.AddEnvironmentVariables();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
