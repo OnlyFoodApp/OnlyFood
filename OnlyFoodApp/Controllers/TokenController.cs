@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace OnlyFoodApp.Controllers
 {
 
-    [Route("api/token")]
+    [Route("api/token/{email}/{password}")]
     [ApiController]
     public class TokenController : ControllerBase
     {
@@ -27,11 +27,11 @@ namespace OnlyFoodApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post(GetAccountWithEmailAndPasswordDto _userData)
+        public async Task<IActionResult> Post([FromRoute] string email, [FromRoute] string password)
         {
-            if (_userData != null && _userData.Email != null && _userData.Password != null)
+            if (email != null && password != null)
             {
-                var user = await GetUser(_userData.Email, _userData.Password);
+                var user = await GetUser(email, password);
                 var role = "";
                 
                 if (user != null)
