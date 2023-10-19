@@ -1,18 +1,11 @@
-﻿using Application.Features.Accounts.Queries.GetAccountsWithPagination;
-using Application.Interfaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application.Extensions;
 using AutoMapper.QueryableExtensions;
 
-namespace Application.Features.Chef.Querries.GetChefsWithPagination
+namespace Application.Features.Chefs.Queries.GetChefsWithPagination
 {
     public class GetChefsWithPaginationQuery : IRequest<PaginatedResult<GetChefsWithPaginationDto>>
     {

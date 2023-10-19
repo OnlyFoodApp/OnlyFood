@@ -1,14 +1,11 @@
-﻿using Application.Features.Accounts.Commands.CreateAccount;
-using Application.Features.Accounts.Queries.GetAccountsWithPagination;
-using Application.Features.Accounts.Queries.GetAllAccounts;
-using Application.Features.Chef.Commands.CreateChef;
-using Application.Features.Chef.Querries.GetAllChefs;
-using Application.Features.Chef.Querries.GetChefsWithPagination;
-using Application.Features.Chef.Querries.GetChefWithId;
+﻿
+using Application.Features.Chefs.Commands.CreateChef;
+using Application.Features.Chefs.Queries.GetAllChefs;
+using Application.Features.Chefs.Queries.GetChefsWithPagination;
+using Application.Features.Chefs.Queries.GetChefWithId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnlyFoodApp.Enums;
 using Shared;
 
 namespace OnlyFoodApp.Controllers

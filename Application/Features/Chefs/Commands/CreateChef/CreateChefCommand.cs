@@ -12,7 +12,7 @@ using Domain.Enums;
 using MediatR;
 using Shared;
 
-namespace Application.Features.Chef.Commands.CreateChef
+namespace Application.Features.Chefs.Commands.CreateChef
 {
     public class CreateChefCommand : IRequest<Result<Guid>>, IMapFrom<Account>
     {
@@ -62,6 +62,8 @@ namespace Application.Features.Chef.Commands.CreateChef
                 {
                     Awards = command.Awards,
                     Experience = command.Experience,
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now
                 }
             };
 

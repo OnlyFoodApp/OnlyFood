@@ -10,10 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Features.Chefs.Queries.GetAllChefs;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Chef.Querries.GetAllChefs
+namespace Application.Features.Chefs.Queries.GetAllChefs
 {
     public record GetAllChefsQuery : IRequest<Result<List<GetAllChefsDto>>>;
 

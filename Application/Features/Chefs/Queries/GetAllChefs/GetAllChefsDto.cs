@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Common.Mappings;
 
-namespace Application.Features.Chef.Querries.GetAllChefs
+namespace Application.Features.Chefs.Queries.GetAllChefs
 {
     public class GetAllChefsDto : IMapFrom<Domain.Entities.Chef>
     {

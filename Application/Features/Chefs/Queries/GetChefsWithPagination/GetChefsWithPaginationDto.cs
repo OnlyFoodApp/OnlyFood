@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Chef.Querries.GetChefsWithPagination
+namespace Application.Features.Chefs.Queries.GetChefsWithPagination
 {
     public class GetChefsWithPaginationDto
     {

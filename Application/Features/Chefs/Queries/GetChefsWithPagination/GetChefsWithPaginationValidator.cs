@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Features.Accounts.Queries.GetAccountsWithPagination;
+﻿
 using FluentValidation;
 
-namespace Application.Features.Chef.Querries.GetChefsWithPagination
+namespace Application.Features.Chefs.Queries.GetChefsWithPagination
 {
     public class GetChefsWithPaginationValidator : AbstractValidator<GetChefsWithPaginationQuery>
     {

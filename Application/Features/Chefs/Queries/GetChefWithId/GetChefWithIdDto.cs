@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Chef.Querries.GetChefWithId
+namespace Application.Features.Chefs.Queries.GetChefWithId
 {
     public class GetChefWithIdDto : IMapFrom<Account>, IMapFrom<Domain.Entities.Chef>
     {

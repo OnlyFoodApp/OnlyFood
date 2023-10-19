@@ -11,9 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using Application.Features.Chef.Querries.GetAllChefs;
 
-namespace Application.Features.Chef.Querries.GetChefWithId
+namespace Application.Features.Chefs.Queries.GetChefWithId
 {
     public record GetChefWithIdQuery(Guid id) : IRequest<Result<GetChefWithIdDto>>;
 

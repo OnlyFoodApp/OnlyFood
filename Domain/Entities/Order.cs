@@ -18,6 +18,7 @@ namespace Domain.Entities
         public float TotalAmount { get; set;}
         public int NumberOfItems { get; set; }
         public float Discount { get; set;}
+        public int Status { get; set; }
         // Navigation Property
         public virtual Customer Customer { get; set; }
 
