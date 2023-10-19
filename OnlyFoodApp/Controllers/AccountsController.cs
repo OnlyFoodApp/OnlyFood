@@ -25,14 +25,14 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
-        //[Route("getAllAccount")]
+        [Route("getAll")]
         public async Task<ActionResult<Result<List<GetAllAccountsDto>>>> GetAllAccountAsync()
         {
             return await _mediator.Send(new GetAllAccountsQuery());
         }
 
         [HttpGet]
-        [Route("paged")]
+        [Route("getAll/paged")]
         public async Task<ActionResult<PaginatedResult<GetAccountsWithPaginationDto>>> GetAccountsWithPagination([FromQuery] GetAccountsWithPaginationQuery query)
         {
             var validator = new GetAccountsWithPaginationValidator();
@@ -50,21 +50,21 @@ namespace OnlyFoodApp.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("create/")]
         public async Task<Result<Guid>> CreateAccount(CreateAccountCommand account)
         {
             var a = account;
             return await _mediator.Send(account);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("get/{id}")]
         //[Route("id")]
         public async Task<ActionResult<Result<GetAccountWithIdDto>>> GetAccountByIdAsync(String id)
         {
             return await _mediator.Send(new GetAccountWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateAccountCommand command)
         {
             if (!id.Equals(command.Id))

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Common.Mappings;
 using Domain.Entities;
+using Domain.Enums;
 
 namespace Application.Features.Accounts.Queries.GetAllAccounts
 {
@@ -18,7 +19,7 @@ namespace Application.Features.Accounts.Queries.GetAllAccounts
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Enum Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public string ProfilePicture { get; set; }
         public string Bio { get; set; }
         public int Roles { get; set; }

@@ -5,6 +5,7 @@ using Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OnlyFoodApp.Helpers;
 using Persistence.Extensions;
 
 namespace OnlyFoodApp
@@ -33,9 +34,9 @@ namespace OnlyFoodApp
             builder.Services.AddApplicationLayer();
             builder.Services.AddInfrastructureLayer();
             builder.Services.AddPersistenceLayer(builder.Configuration);
-            builder.Services.AddRouting(options =>
+            builder.Services.AddControllersWithViews(options =>
             {
-                options.LowercaseUrls = true; // Convert URLs to lowercase
+                options.Conventions.Add(new LowercaseControllerModelConvention());
             });
             builder.Services.AddControllers();
 
