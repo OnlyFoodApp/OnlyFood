@@ -10,6 +10,7 @@ namespace Application.Features.Payments.Queries.GetAllPayments
 {
     public class GetAllPaymentsDto : IMapFrom<Payment>
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
         public byte IsActived { get; set; }
