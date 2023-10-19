@@ -1,12 +1,9 @@
 ﻿using Domain.Common;
 using Domain.Common.Interface;
-using Microsoft.Extensions.DependencyInjection;
 using Persistence.Contexts;
 using System.Reflection;
-using Application.Features.Accounts.Commands.CreateAccount;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using MediatR;
+
 
 namespace OnlyFoodApp
 {

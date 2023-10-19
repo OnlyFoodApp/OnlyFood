@@ -22,8 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Features\Accounts\Commands\DeleteAccount\" />
-    <Folder Include="Features\Accounts\Commands\UpdateAccount\" />
     <Folder Include="Features\Chefs\Commands\DeleteChef\" />
     <Folder Include="Features\Chefs\Commands\UpdateChef\" />
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />

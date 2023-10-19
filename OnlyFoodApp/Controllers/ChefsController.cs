@@ -52,9 +52,9 @@ namespace OnlyFoodApp.Controllers
             return await _mediator.Send(account);
         }
 
-        [HttpGet]
-        [Route("id")]
-        public async Task<ActionResult<Result<GetChefWithIdDto>>> GetChefByIdAsync([FromQuery] String id)
+        [HttpGet("{id}")]
+        //[Route("id")]
+        public async Task<ActionResult<Result<GetChefWithIdDto>>> GetChefByIdAsync(String id)
         {
             return await _mediator.Send(new GetChefWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
         }

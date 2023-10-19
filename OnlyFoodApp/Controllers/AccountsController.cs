@@ -1,14 +1,14 @@
 ﻿using Application.Features.Accounts.Commands.CreateAccount;
 using Application.Features.Accounts.Queries.GetAccountsWithPagination;
 using Application.Features.Accounts.Queries.GetAllAccounts;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
-using System.Data;
-using OnlyFoodApp.Enums;
+using Application.Features.Accounts.Commands.DeleteAccount;
+using Application.Features.Accounts.Commands.UpdateAccount;
+using Application.Features.Accounts.Queries.GetAccountById;
+
 
 namespace OnlyFoodApp.Controllers
 {
@@ -25,6 +25,7 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
+        //[Route("getAllAccount")]
         public async Task<ActionResult<Result<List<GetAllAccountsDto>>>> GetAllAccountAsync()
         {
             return await _mediator.Send(new GetAllAccountsQuery());
@@ -54,6 +55,35 @@ namespace OnlyFoodApp.Controllers
         {
             var a = account;
             return await _mediator.Send(account);
+        }
+
+        [HttpGet("{id}")]
+        //[Route("id")]
+        public async Task<ActionResult<Result<GetAccountWithIdDto>>> GetAccountByIdAsync(String id)
+        {
+            return await _mediator.Send(new GetAccountWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateAccountCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return BadRequest();
+            }
+
+            return await _mediator.Send(command);
+        }
+
+        [HttpPut("delete/{id}")]
+        public async Task<ActionResult<Result<Guid>>> Delete(Guid id, DeleteAccountCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return BadRequest();
+            }
+
+            return await _mediator.Send(command);
         }
     }
 }

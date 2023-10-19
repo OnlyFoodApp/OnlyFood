@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Application.Common.Mappings;
 using Application.Interfaces.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Shared;
 
 namespace Application.Features.Accounts.Commands.CreateAccount

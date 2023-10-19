@@ -1,5 +1,4 @@
-﻿using Application.Features.Chefs.Commands.CreateChef;
-using Application.Features.Chefs.Queries.GetAllChefs;
+﻿
 using Application.Features.Customers.Commands.CreateCustomer;
 using Application.Features.Customers.Queries.GetAllCustomers;
 using MediatR;
