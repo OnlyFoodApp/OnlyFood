@@ -2,11 +2,14 @@
 using Application.Features.Customers.Commands.CreateCustomer;
 using Application.Features.Customers.Queries.GetAllCustomers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlyFoodApp.Enums;
 using Shared;
 
 namespace OnlyFoodApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CustomersController : ApiControllerBase
     {
         private readonly IMediator _mediator;
