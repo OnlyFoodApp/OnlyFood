@@ -10,7 +10,7 @@ using Shared;
 
 namespace OnlyFoodApp.Controllers
 {
-    [Authorize(Roles = "Chef")]
+    [Authorize(Roles = "Admin")]
     public class ChefsController : ApiControllerBase
     {
         private readonly IMediator _mediator;
