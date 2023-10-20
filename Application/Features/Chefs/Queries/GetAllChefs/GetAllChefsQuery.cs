@@ -32,11 +32,34 @@ namespace Application.Features.Chefs.Queries.GetAllChefs
 
         public async Task<Result<List<GetAllChefsDto>>> Handle(GetAllChefsQuery request, CancellationToken cancellationToken)
         {
-            var accounts = await _unitOfWork.Repository<Domain.Entities.Chef>().Entities
+            var chefs = await _unitOfWork.Repository<Domain.Entities.Chef>().Entities
                 .ProjectTo<GetAllChefsDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+            var accounts = await _unitOfWork.Repository<Account>().Entities
+                .ProjectTo<GetAllAccountsDto>(_mapper.ConfigurationProvider)
+                .ToListAsync(cancellationToken);
 
-            return await Result<List<GetAllChefsDto>>.SuccessAsync(accounts);
+            foreach (var account in accounts)
+            {
+                foreach (var chef in chefs)
+                {
+                    if (chef.Account.Id.Equals(account.Id))
+                    {
+                        chef.Account.Username = account.Username;
+                        chef.Account.Password = account.Password;
+                        chef.Account.Email = account.Email;
+                        chef.Account.FirstName = account.FirstName;
+                        chef.Account.LastName = account.LastName;
+                        chef.Account.PhoneNumber = account.PhoneNumber;
+                        chef.Account.DateOfBirth = account.DateOfBirth;
+                        chef.Account.Gender = account.Gender;
+                        chef.Account.ProfilePicture = account.ProfilePicture;
+                        chef.Account.Bio = account.Bio;
+                        chef.Account.Roles = account.Roles;
+                    }
+                }
+            }
+            return await Result<List<GetAllChefsDto>>.SuccessAsync(chefs);
         }
     }
 }
