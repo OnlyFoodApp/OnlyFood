@@ -34,6 +34,18 @@ namespace OnlyFoodApp
             builder.Services.AddApplicationLayer();
             builder.Services.AddInfrastructureLayer();
             builder.Services.AddPersistenceLayer(builder.Configuration);
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+
+                        //you can configure your custom policy
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             builder.Services.AddControllersWithViews(options =>
             {
                 options.Conventions.Add(new LowercaseControllerModelConvention());
@@ -100,6 +112,7 @@ namespace OnlyFoodApp
 
 
             app.MapControllers();
+            app.UseCors();
 
             app.Run();
         }
