@@ -11,6 +11,7 @@ namespace Application.Features.Orders.Queries.GetAllOrders
     public class GetAllOrdersDto : IMapFrom<Order>
     {
         public DateTime OrderDate { get; set; }
+        public Guid CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string PaymentName { get; set; }
         public DateTime ExpectedDeliveryTime { get; set; }

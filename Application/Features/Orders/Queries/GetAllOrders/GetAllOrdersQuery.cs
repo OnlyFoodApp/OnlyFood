@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Application.Features.Accounts.Queries.GetAccountById;
 
 namespace Application.Features.Orders.Queries.GetAllOrders
 {
@@ -32,6 +33,18 @@ namespace Application.Features.Orders.Queries.GetAllOrders
             var orders = await _unitOfWork.Repository<Order>().Entities
                 .ProjectTo<GetAllOrdersDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+
+
+            foreach (var order in orders)
+            {
+                var account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id.Equals(order.CustomerId))
+                    .ProjectTo<GetAccountWithIdDto>(_mapper.ConfigurationProvider)
+                    .SingleOrDefaultAsync(cancellationToken);
+                if (account != null)
+                {
+                    order.CustomerName = account.FirstName + " " + account.LastName;
+                }
+            }
 
             return await Result<List<GetAllOrdersDto>>.SuccessAsync(orders);
         }
