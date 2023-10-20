@@ -37,7 +37,10 @@ namespace Application.Features.Orders.Queries.GetAllOrders
 
             foreach (var order in orders)
             {
-                var account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id.Equals(order.CustomerId))
+                var customer = _unitOfWork.Repository<Customer>().Entities
+                    .Where(a => a.Id.Equals(order.CustomerId)).ToList().FirstOrDefault();
+
+                var account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id.Equals(customer.AccountId))
                     .ProjectTo<GetAccountWithIdDto>(_mapper.ConfigurationProvider)
                     .SingleOrDefaultAsync(cancellationToken);
                 if (account != null)

@@ -1,6 +1,7 @@
 ﻿
 using Application.Features.Orders.Commands.CreateOrder;
 using Application.Features.Orders.Queries.GetAllOrders;
+using Application.Features.Orders.Queries.GetEarningDataBaseOnOrder;
 using Application.Features.Orders.Queries.GetEarningDataOfCustomerBaseOnOrder;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +31,10 @@ namespace OnlyFoodApp.Controllers
             return await _mediator.Send(order);
         }
         [HttpGet]
-        [Route("getEarningDataOfCustomerBaseOnOrder")]
-        public async Task<Result<GetEarningDataOfCustomerBaseOnOrderDto>> GetEarningDataOfCustomerBaseOnOrderAsync()
+        [Route("getEarningDataBaseOnOrder")]
+        public async Task<Result<GetEarningDataBaseOnOrderDto>> GetEarningDataBaseOnOrderAsync()
         {
-            return await _mediator.Send(new GetEarningDataOfCustomerBaseOnOrderQuery());
+            return await _mediator.Send(new GetEarningDataBaseOnOrderQuery());
         }
     }
 }
