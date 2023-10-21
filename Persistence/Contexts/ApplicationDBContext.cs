@@ -10,6 +10,7 @@ using Domain.Entities;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Identity.Client;
 
 namespace Persistence.Contexts
 {
@@ -22,7 +23,7 @@ namespace Persistence.Contexts
             : base(options)
         {
             _dispatcher = dispatcher;
-            
+
         }
 
         public DbSet<Account> Accounts => Set<Account>();
@@ -43,6 +44,18 @@ namespace Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var accountId1 = Guid.NewGuid();
+            var accountId2 = Guid.NewGuid();
+            var accountId3 = Guid.NewGuid();
+            var accountId4 = Guid.NewGuid();
+            var accountId5 = Guid.NewGuid();
+
+            var accountId6 = Guid.NewGuid();
+            var accountId7 = Guid.NewGuid();
+            var accountId8 = Guid.NewGuid();
+            var accountId9 = Guid.NewGuid();
+            var accountId10 = Guid.NewGuid();
+
             modelBuilder.Entity<Account>().HasData(
                 new Account
                 {
@@ -255,6 +268,317 @@ namespace Persistence.Contexts
                 }
             // Add other sample Account objects here using the same pattern
             );
+
+            modelBuilder.Entity<Chef>().HasData(
+    new Chef
+    {
+        Id = Guid.NewGuid(),
+        Experience = "Experienced Chef",
+        Awards = "Best Chef 2022",
+        AccountId = accountId1, // Reference the previously seeded AccountId
+        CreatedDate = DateTime.Now,
+        LastModifiedDate = DateTime.Now,
+    },
+    new Chef
+    {
+        Id = Guid.NewGuid(),
+        Experience = "Experienced Chef",
+        Awards = "Best Chef 2022",
+        AccountId = accountId2, // Reference the newly generated accountId2
+        CreatedDate = DateTime.Now,
+        LastModifiedDate = DateTime.Now,
+    },
+    new Chef
+    {
+        Id = Guid.NewGuid(),
+        Experience = "Master Chef",
+        Awards = "Top Chef 2022",
+        AccountId = accountId3, // Reference the newly generated accountId3
+        CreatedDate = DateTime.Now,
+        LastModifiedDate = DateTime.Now,
+    },
+    new Chef
+    {
+        Id = Guid.NewGuid(),
+        Experience = "Gourmet Chef",
+        Awards = "Culinary Excellence Award 2022",
+        AccountId = accountId4, // Reference the newly generated accountId4
+        CreatedDate = DateTime.Now,
+        LastModifiedDate = DateTime.Now,
+    },
+    new Chef
+    {
+        Id = Guid.NewGuid(),
+        Experience = "Executive Chef",
+        Awards = "Michelin Star Chef 2022",
+        AccountId = accountId5, // Reference the newly generated accountId5
+        CreatedDate = DateTime.Now,
+        LastModifiedDate = DateTime.Now,
+    });
+
+            modelBuilder.Entity<Account>().HasData(
+                new Account
+                {
+                    Id = accountId1,
+                    Username = "user1",
+                    Password = "password1",
+                    Email = "user1@user1.com",
+                    PhoneNumber = "1234567890",
+                    FirstName = "John",
+                    LastName = "Doe",
+                    DateOfBirth = DateTime.Parse("1990-05-15"),
+                    Gender = (GenderEnum)0,
+                    ProfilePicture = "/profile/profile1.jpg",
+                    Bio = "Avid reader",
+                    ActiveStatus = 1,
+                    Roles = 1,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = null,
+                    ModifiedBy = null,
+                    LastModifiedDate = DateTime.Now
+                },
+                new Account
+                {
+                    Id = accountId2,
+                    Username = "user2",
+                    Password = "password2",
+                    Email = "user2@user2.com",
+                    PhoneNumber = "2345678901",
+                    FirstName = "Alice",
+                    LastName = "Johnson",
+                    DateOfBirth = DateTime.Parse("1985-12-10"),
+                    Gender = (GenderEnum)1,
+                    ProfilePicture = "/profile/profile2.jpg",
+                    Bio = "Nature lover",
+                    ActiveStatus = 1,
+                    Roles = 1,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = null,
+                    ModifiedBy = null,
+                    LastModifiedDate = DateTime.Now
+                },
+                new Account
+                {
+                    Id = accountId3,
+                    Username = "user3",
+                    Password = "password3",
+                    Email = "user3@user3.com",
+                    PhoneNumber = "3456789012",
+                    FirstName = "Michael",
+                    LastName = "Smith",
+                    DateOfBirth = DateTime.Parse("1988-08-20"),
+                    Gender = (GenderEnum)0,
+                    ProfilePicture = "/profile/profile3.jpg",
+                    Bio = "Tech enthusiast",
+                    ActiveStatus = 1,
+                    Roles = 1,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = null,
+                    ModifiedBy = null,
+                    LastModifiedDate = DateTime.Now
+                },
+                new Account
+                {
+                    Id = accountId4,
+                    Username = "user4",
+                    Password = "password4",
+                    Email = "user4@user4.com",
+                    PhoneNumber = "4567890123",
+                    FirstName = "Emily",
+                    LastName = "Davis",
+                    DateOfBirth = DateTime.Parse("1992-04-05"),
+                    Gender = (GenderEnum)1,
+                    ProfilePicture = "/profile/profile4.jpg",
+                    Bio = "Traveler",
+                    ActiveStatus = 1,
+                    Roles = 1,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = null,
+                    ModifiedBy = null,
+                    LastModifiedDate = DateTime.Now
+                },
+                new Account
+                {
+                    Id = accountId5,
+                    Username = "user5",
+                    Password = "password5",
+                    Email = "user5@user5.com",
+                    PhoneNumber = "5678901234",
+                    FirstName = "Daniel",
+                    LastName = "Brown",
+                    DateOfBirth = DateTime.Parse("1983-11-30"),
+                    Gender = (GenderEnum)0,
+                    ProfilePicture = "/profile/profile5.jpg",
+                    Bio = "Fitness enthusiast",
+                    ActiveStatus = 1,
+                    Roles = 1,
+                    CreatedDate = DateTime.Now,
+                    CreatedBy = null,
+                    ModifiedBy = null,
+                    LastModifiedDate = DateTime.Now
+                });
+
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Address = "123 Main St",
+                    RewardsPoints = 100,
+                    AccountId = accountId6, // Reference to the previously seeded AccountId (user1)
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now,
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Address = "456 Elm St",
+                    RewardsPoints = 200,
+                    AccountId = accountId7, // Reference to the newly generated accountId2 (user2)
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now,
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Address = "789 Oak St",
+                    RewardsPoints = 150,
+                    AccountId = accountId8, // Reference to the newly generated accountId3 (user3)
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now,
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Address = "101 Pine St",
+                    RewardsPoints = 250,
+                    AccountId = accountId9, // Reference to the newly generated accountId4 (user4)
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now,
+                },
+                new Customer
+                {
+                    Id = Guid.NewGuid(),
+                    Address = "202 Maple St",
+                    RewardsPoints = 300,
+                    AccountId = accountId10, // Reference to the newly generated accountId5 (user5)
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now,
+                }
+            );
+            modelBuilder.Entity<Account>().HasData(
+    new Account
+    {
+        Id = accountId6,
+        Username = "johncustomer",
+        Password = "customer123",
+        Email = "john.customer@example.com",
+        PhoneNumber = "1234567890",
+        FirstName = "John",
+        LastName = "Smith",
+        DateOfBirth = DateTime.Parse("1988-03-25"),
+        Gender = (GenderEnum)0, // Male
+        ProfilePicture = "/profile/john_smith.jpg",
+        Bio = "I love exploring new cuisines and trying out different recipes. Excited to be a part of this culinary community!",
+        ActiveStatus = 1, // Active
+        Roles = 0, // Customer role
+        CreatedDate = DateTime.Now,
+        CreatedBy = null,
+        ModifiedBy = null,
+        LastModifiedDate = DateTime.Now
+    },
+    new Account
+    {
+        Id = accountId7,
+        Username = "emily_foods",
+        Password = "emily1234",
+        Email = "emily.foodie@example.com",
+        PhoneNumber = "2345678901",
+        FirstName = "Emily",
+        LastName = "Johnson",
+        DateOfBirth = DateTime.Parse("1990-08-15"),
+        Gender = (GenderEnum)0, // Female
+        ProfilePicture = "/profile/emily_johnson.jpg",
+        Bio = "Food enthusiast and home cook. I enjoy experimenting with flavors and creating delightful dishes for my family and friends.",
+        ActiveStatus = 1, // Active
+        Roles = 0, // Customer role
+        CreatedDate = DateTime.Now,
+        CreatedBy = null,
+        ModifiedBy = null,
+        LastModifiedDate = DateTime.Now
+    },
+    new Account
+    {
+        Id = accountId8,
+        Username = "healthy_eater",
+        Password = "healthyeats",
+        Email = "healthymeals@example.com",
+        PhoneNumber = "3456789012",
+        FirstName = "Alice",
+        LastName = "Green",
+        DateOfBirth = DateTime.Parse("1985-05-10"),
+        Gender = (GenderEnum)1, // Female
+        ProfilePicture = "/profile/alice_green.jpg",
+        Bio = "Passionate about healthy living and clean eating. Sharing my journey towards a healthier lifestyle through nutritious meals.",
+        ActiveStatus = 1, // Active
+        Roles = 0, // Customer role
+        CreatedDate = DateTime.Now,
+        CreatedBy = null,
+        ModifiedBy = null,
+        LastModifiedDate = DateTime.Now
+    },
+    new Account
+    {
+        Id = accountId9,
+        Username = "traveling_foodie",
+        Password = "foodlover",
+        Email = "foodexplorer@example.com",
+        PhoneNumber = "4567890123",
+        FirstName = "Daniel",
+        LastName = "Baker",
+        DateOfBirth = DateTime.Parse("1982-12-18"),
+        Gender = (GenderEnum)0, // Male
+        ProfilePicture = "/profile/daniel_baker.jpg",
+        Bio = "A food lover who enjoys exploring different cuisines and local delicacies during my travels. Food brings people together!",
+        ActiveStatus = 1, // Active
+        Roles = 0, // Customer role
+        CreatedDate = DateTime.Now,
+        CreatedBy = null,
+        ModifiedBy = null,
+        LastModifiedDate = DateTime.Now
+    },
+    new Account
+    {
+        Id = accountId10,
+        Username = "baking_enthusiast",
+        Password = "bakeitup",
+        Email = "baker@example.com",
+        PhoneNumber = "5678901234",
+        FirstName = "Olivia",
+        LastName = "Miller",
+        DateOfBirth = DateTime.Parse("1989-06-22"),
+        Gender = (GenderEnum)1, // Female
+        ProfilePicture = "/profile/olivia_miller.jpg",
+        Bio = "Passionate about baking and pastry creations. Join me on my baking adventures as I explore the art of sweets and treats!",
+        ActiveStatus = 1, // Active
+        Roles = 0, // Customer role
+        CreatedDate = DateTime.Now,
+        CreatedBy = null,
+        ModifiedBy = null,
+        LastModifiedDate = DateTime.Now
+    }
+);
+
+            modelBuilder.Entity<Payment>().HasData(
+                new Payment
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "Momo",
+                    Description = "Thanh toan qua vi dien tu momo",
+                    IsActived = 1,
+                    CreatedDate = DateTime.Now,
+                    LastModifiedDate = DateTime.Now
+                });
+
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
