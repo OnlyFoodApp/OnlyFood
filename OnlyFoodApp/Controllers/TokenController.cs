@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace OnlyFoodApp.Controllers
 {
 
-    [Route("api/token/{email}/{password}")]
+    [Route("api/token")]
     [ApiController]
     public class TokenController : ControllerBase
     {
@@ -27,13 +27,13 @@ namespace OnlyFoodApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Post([FromRoute] string email, [FromRoute] string password)
+        public async Task<IActionResult> Post(GetAccountWithEmailAndPasswordDto _userData)
         {
-            if (email != null && password != null)
+            if (_userData != null && _userData.Email != null && _userData.Password != null)
             {
-                var user = await GetUser(email, password);
+                var user = await GetUser(_userData.Email, _userData.Password);
                 var role = "";
-                
+
                 if (user != null)
                 {
                     if (user.Roles == 2)
@@ -90,55 +90,7 @@ namespace OnlyFoodApp.Controllers
             return await _context.Accounts.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         }
 
-        //private async Task<IActionResult> GenerateJwtToken(GetAccountWithEmailAndPasswordDto user)
-        //{
-        //    var account = await GetUser(user.Email, user.Password); // Implement a method to retrieve user roles from your data store
-
-        //    var claims = new List<Claim>
-        //    {
-        //        new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
-        //        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        //        new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-        //        new Claim(ClaimTypes.Name, user.Password),
-        //        new Claim(ClaimTypes.Email, user.Email),
-        //    };
-
-        //    // Add user roles to claims
-        //    foreach (var role in roles)
-        //    {
-        //        claims.Add(new Claim(ClaimTypes.Role, role));
-        //    }
-
-        //    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-        //    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-        //    var token = new JwtSecurityToken(
-        //        _configuration["Jwt:Issuer"],
-        //        _configuration["Jwt:Audience"],
-        //        claims,
-        //        expires: DateTime.UtcNow.AddMinutes(10),
-        //        signingCredentials: credentials
-        //    );
-
-        //    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
-        //}
-
-
-
-        //[AllowAnonymous]
-        //[HttpPost]
-        //public async Task<IActionResult> Login([FromBody] GetAccountWithEmailAndPasswordDto login)
-        //{
-        //    IActionResult response = Unauthorized();
-        //    var user = await AuthenticateUser(login);
-
-        //    if (user != null)
-        //    {
-        //        var tokenResult = await GenerateJwtToken(user);
-        //        return tokenResult;
-        //    }
-
-        //    return response;
-        //}
+        
     }
 }
 

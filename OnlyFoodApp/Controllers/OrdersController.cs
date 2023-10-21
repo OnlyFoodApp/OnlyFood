@@ -31,7 +31,7 @@ namespace OnlyFoodApp.Controllers
             return await _mediator.Send(order);
         }
         [HttpGet]
-        [Route("getEarningDataBaseOnOrder")]
+        [Route("dataBaseOnOrder")]
         public async Task<Result<GetEarningDataBaseOnOrderDto>> GetEarningDataBaseOnOrderAsync()
         {
             return await _mediator.Send(new GetEarningDataBaseOnOrderQuery());
