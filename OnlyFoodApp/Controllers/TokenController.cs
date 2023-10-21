@@ -59,7 +59,8 @@ namespace OnlyFoodApp.Controllers
                         new Claim("Id", user.Id.ToString()),
                         new Claim("LastName", user.LastName),
                         new Claim("UserName", user.Username),
-                        new Claim("Email", user.Email)
+                        new Claim("Email", user.Email),
+                        new Claim("Role", role)
                     };
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
