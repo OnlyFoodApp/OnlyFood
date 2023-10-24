@@ -27,16 +27,21 @@
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />
     <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
     <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
-    <Folder Include="Features\Comments\" />
-    <Folder Include="Features\Dishs\" />
-    <Folder Include="Features\DishCategorys\" />
-    <Folder Include="Features\Likes\" />
-    <Folder Include="Features\Menus\" />
-    <Folder Include="Features\Posts\" />
-    <Folder Include="Features\OrderDetails\" />
+    <Folder Include="Features\DishCategorys\Commands\" />
+    <Folder Include="Features\DishCategorys\Queries\" />
+    <Folder Include="Features\Dishs\Commands\" />
+    <Folder Include="Features\Dishs\Queries\" />
+    <Folder Include="Features\Likes\Commands\" />
+    <Folder Include="Features\Likes\Queries\" />
+    <Folder Include="Features\Menus\Commands\" />
+    <Folder Include="Features\Menus\Queries\" />
+    <Folder Include="Features\OrderDetails\Commands\" />
+    <Folder Include="Features\OrderDetails\Queries\" />
     <Folder Include="Features\Orders\Commands\DeleteOrder\" />
     <Folder Include="Features\Orders\Commands\UpdateOrder\" />
     <Folder Include="Features\Payments\Commands\DeletePayment\" />
+    <Folder Include="Features\Posts\Commands\" />
+    <Folder Include="Features\Posts\Queries\" />
   </ItemGroup>
 
 </Project>
