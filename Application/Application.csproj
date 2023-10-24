@@ -40,8 +40,6 @@
     <Folder Include="Features\Orders\Commands\DeleteOrder\" />
     <Folder Include="Features\Orders\Commands\UpdateOrder\" />
     <Folder Include="Features\Payments\Commands\DeletePayment\" />
-    <Folder Include="Features\Posts\Commands\" />
-    <Folder Include="Features\Posts\Queries\" />
   </ItemGroup>
 
 </Project>
