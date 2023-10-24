@@ -27,12 +27,6 @@
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />
     <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
     <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
-    <Folder Include="Features\Dishs\Commands\" />
-    <Folder Include="Features\Dishs\Queries\" />
-    <Folder Include="Features\Likes\Commands\" />
-    <Folder Include="Features\Likes\Queries\" />
-    <Folder Include="Features\Menus\Commands\" />
-    <Folder Include="Features\Menus\Queries\" />
     <Folder Include="Features\OrderDetails\Commands\" />
     <Folder Include="Features\OrderDetails\Queries\" />
     <Folder Include="Features\Orders\Commands\DeleteOrder\" />
