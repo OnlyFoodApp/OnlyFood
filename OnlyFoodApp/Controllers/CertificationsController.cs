@@ -24,7 +24,7 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpPost]
-        public async Task<Result<Guid>> CreateCampaigns(CreateCertificationCommand certification)
+        public async Task<Result<Guid>> CreateCertification(CreateCertificationCommand certification)
         {
             var a = certification;
             return await _mediator.Send(certification);
