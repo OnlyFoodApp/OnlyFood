@@ -24,7 +24,7 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpPost]
-        public async Task<Result<Guid>> CreatePost(CreatePostCommand post)
+        public async Task<Result<Guid>> CreatePost([FromForm]CreatePostCommand post)
         {
             var a = post;
             return await _mediator.Send(post);

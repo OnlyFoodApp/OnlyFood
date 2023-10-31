@@ -25,7 +25,8 @@ namespace Infrastructure.Extensions
             .AddTransient<IMediator, Mediator>()
                 .AddTransient<IDomainEventDispatcher, DomainEventDispatcher>()
                 .AddTransient<IDateTimeService, DateTimeService>()
-                .AddTransient<IEmailService, EmailService>();
+                .AddTransient<IEmailService, EmailService>()
+                .AddTransient<IFileService, FileService>();
         }
     }
 }
