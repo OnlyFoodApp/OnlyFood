@@ -3,6 +3,7 @@ using Application.Features.Accounts.Commands.UpdateAccount;
 using Application.Features.Campaigns.Commands.CreateCampaign;
 using Application.Features.Campaigns.Commands.UpdateCampaign;
 using Application.Features.Campaigns.Queries.GetAllCampaigns;
+using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
@@ -48,6 +49,12 @@ namespace OnlyFoodApp.Controllers
                 return new Status(HttpStatusCode.OK,
                 "Success",
                 "Campaign updated successfully!.");
+            }
+            catch (NotFoundException nfEx)
+            {
+                return new Status(HttpStatusCode.NotFound,
+                "Failed",
+                "Campaign not found!.");
             }
             catch(Exception ex)
             {

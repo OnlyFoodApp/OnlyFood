@@ -2,6 +2,7 @@
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
+using Domain.Exceptions;
 using MediatR;
 using Shared;
 
@@ -51,7 +52,8 @@ namespace Application.Features.Campaigns.Commands.UpdateCampaign
             }
             else
             {
-                return await Result<Guid>.FailureAsync("Campaign Not Found.");
+                await Result<Guid>.FailureAsync("Campaign Not Found.");
+                throw new NotFoundException();
             }
         }
     }
