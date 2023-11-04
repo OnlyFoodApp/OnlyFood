@@ -1,5 +1,9 @@
 ﻿
+using Application.Features.Menus.Commands.DeleteMenu;
+using Application.Features.Menus.Commands.UpdateMenu;
 using Application.Features.Orders.Commands.CreateOrder;
+using Application.Features.Orders.Commands.DeleteOrder;
+using Application.Features.Orders.Commands.UpdateOrder;
 using Application.Features.Orders.Queries.GetAllOrders;
 using Application.Features.Orders.Queries.GetEarningDataBaseOnOrder;
 using Application.Features.Orders.Queries.GetEarningDataOfCustomerBaseOnOrder;
@@ -35,6 +39,30 @@ namespace OnlyFoodApp.Controllers
         public async Task<Result<GetEarningDataBaseOnOrderDto>> GetEarningDataBaseOnOrderAsync()
         {
             return await _mediator.Send(new GetEarningDataBaseOnOrderQuery());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult<Result<Guid>>> Delete(Guid id, DeleteOrderCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return BadRequest();
+            }
+
+            return await _mediator.Send(command);
+        }
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<Result<Guid>>> Update(Guid id, UpdateOrderCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return BadRequest();
+            }
+
+            return await _mediator.Send(command);
         }
     }
 }

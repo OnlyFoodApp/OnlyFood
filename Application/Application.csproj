@@ -27,11 +27,6 @@
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />
     <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
     <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
-    <Folder Include="Features\OrderDetails\Commands\" />
-    <Folder Include="Features\OrderDetails\Queries\" />
-    <Folder Include="Features\Orders\Commands\DeleteOrder\" />
-    <Folder Include="Features\Orders\Commands\UpdateOrder\" />
-    <Folder Include="Features\Payments\Commands\DeletePayment\" />
   </ItemGroup>
 
 </Project>
