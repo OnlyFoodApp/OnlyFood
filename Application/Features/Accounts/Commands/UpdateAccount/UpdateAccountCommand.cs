@@ -48,7 +48,7 @@ namespace Application.Features.Accounts.Commands.UpdateAccount
                 account.ModifiedBy = command.Id;
                 account.LastModifiedDate = DateTime.Now;
                 await _unitOfWork.Repository<Account>().UpdateAsync(account);
-                account.AddDomainEvent(new AccountDeleteEvent(account));
+                account.AddDomainEvent(new AccountUpdatedEvent(account));
 
                 await _unitOfWork.Save(cancellationToken);
 

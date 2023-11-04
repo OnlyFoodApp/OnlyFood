@@ -1,9 +1,12 @@
-﻿using Application.Features.Campaigns.Commands.CreateCampaign;
+﻿using Application.Common.Response;
+using Application.Features.Accounts.Commands.UpdateAccount;
+using Application.Features.Campaigns.Commands.CreateCampaign;
+using Application.Features.Campaigns.Commands.UpdateCampaign;
 using Application.Features.Campaigns.Queries.GetAllCampaigns;
-using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
+using System.Net;
 
 namespace OnlyFoodApp.Controllers
 {
@@ -28,11 +31,30 @@ namespace OnlyFoodApp.Controllers
             var a = campaign;
             return await _mediator.Send(campaign);
         }
-        //[HttpGet]
-        //[Route("getEarningDataBaseOnCampaign")]
-        //public async Task<Result<GetEarningDataBaseOnCampaignDto>> GetEarningDataBaseOnCampaignAsync()
-        //{
-        //    return await _mediator.Send(new GetEarningDataBaseOnCampaignQuery());
-        //}
+
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<Status> Update(Guid id, UpdateCampaignCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return new Status(HttpStatusCode.NotFound,
+                "Failed",
+                "Campaign not found!.");
+            }
+            try
+            {
+                await _mediator.Send(command);
+                return new Status(HttpStatusCode.OK,
+                "Success",
+                "Campaign updated successfully!.");
+            }
+            catch(Exception ex)
+            {
+                return new Status(HttpStatusCode.InternalServerError,
+                "Failed",
+                $"Can not update this campaign. Because: { ex.Message }!.");
+            }
+        }
     }
 }

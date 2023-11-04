@@ -10,6 +10,7 @@ namespace Application.Features.Campaigns.Queries.GetAllCampaigns
 {
     public class GetAllCampaignsDto : IMapFrom<Campaign>
     {
+        public Guid Id { get; set; }
         public string CampaignName { get; set; }
         public string? Description { get; set; }
         public DateTime StartDate { get; set; }

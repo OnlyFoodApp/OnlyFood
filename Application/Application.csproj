@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Exceptions\" />
     <Folder Include="Features\Chefs\Commands\DeleteChef\" />
     <Folder Include="Features\Chefs\Commands\UpdateChef\" />
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />

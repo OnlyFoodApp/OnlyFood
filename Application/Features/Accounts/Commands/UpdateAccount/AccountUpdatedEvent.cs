@@ -4,11 +4,11 @@ using Domain.Entities;
 
 namespace Application.Features.Accounts.Commands.UpdateAccount
 {
-    public class AccountDeleteEvent : BaseEvent
+    public class AccountUpdatedEvent : BaseEvent
     {
         public Account Account { get; }
 
-        public AccountDeleteEvent(Account account)
+        public AccountUpdatedEvent(Account account)
         {
             Account = account;
         }
