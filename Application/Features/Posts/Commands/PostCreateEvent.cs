@@ -13,9 +13,9 @@ namespace Application.Features.Posts.Commands
         public Post Post { get; }
 
 
-        public PostCreateEvent(Post Post)
+        public PostCreateEvent(Post post)
         {
-            Post = Post;
+            Post = post;
         }
     }
 }

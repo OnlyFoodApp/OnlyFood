@@ -1,8 +1,9 @@
 ﻿using Application.Common.Response;
-using Application.Features.Accounts.Commands.UpdateAccount;
 using Application.Features.Campaigns.Commands.CreateCampaign;
+using Application.Features.Campaigns.Commands.DeleteCampaign;
 using Application.Features.Campaigns.Commands.UpdateCampaign;
 using Application.Features.Campaigns.Queries.GetAllCampaigns;
+using Application.Features.Certifications.Commands.UpdateCertification;
 using Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -39,9 +40,9 @@ namespace OnlyFoodApp.Controllers
         {
             if (!id.Equals(command.Id))
             {
-                return new Status(HttpStatusCode.NotFound,
+                return new Status(HttpStatusCode.BadRequest,
                 "Failed",
-                "Campaign not found!.");
+                "Campaign Id was not match!.");
             }
             try
             {
@@ -50,7 +51,7 @@ namespace OnlyFoodApp.Controllers
                 "Success",
                 "Campaign updated successfully!.");
             }
-            catch (NotFoundException nfEx)
+            catch (NotFoundException)
             {
                 return new Status(HttpStatusCode.NotFound,
                 "Failed",
@@ -61,6 +62,37 @@ namespace OnlyFoodApp.Controllers
                 return new Status(HttpStatusCode.InternalServerError,
                 "Failed",
                 $"Can not update this campaign. Because: { ex.Message }!.");
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<Status> Delete(Guid id, DeleteCampaignCommand command)
+        {
+            if (!id.Equals(command.Id))
+            {
+                return new Status(HttpStatusCode.BadRequest,
+                "Failed",
+                "Campaign Id was not match!.");
+            }
+            try
+            {
+                await _mediator.Send(command);
+                return new Status(HttpStatusCode.OK,
+                "Success",
+                "Campaign deleted successfully!.");
+            }
+            catch (NotFoundException)
+            {
+                return new Status(HttpStatusCode.NotFound,
+                "Failed",
+                "Campaign not found!.");
+            }
+            catch (Exception ex)
+            {
+                return new Status(HttpStatusCode.InternalServerError,
+                "Failed",
+                $"Can not delete this campaign. Because: {ex.Message}!.");
             }
         }
     }

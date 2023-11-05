@@ -10,6 +10,7 @@ namespace Application.Features.Certifications.Queries
 {
     public class GetAllCertificationsDto : IMapFrom<Certification>
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public Guid ChefID { get; set; }
         public string IssuingAuthority { get; set; }

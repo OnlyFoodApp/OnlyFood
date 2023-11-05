@@ -13,9 +13,9 @@ namespace Application.Features.Likes.Commands.DeleteLike
         public Like Like { get; }
 
 
-        public LikeDeletedEvent(Like Like)
+        public LikeDeletedEvent(Like like)
         {
-            Like = Like;
+            Like = like;
         }
     }
 

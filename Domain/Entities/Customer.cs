@@ -16,8 +16,8 @@ namespace Domain.Entities
         public int RewardsPoints { get; set; }
 
         // Navigation Property
-        public Account? Account { get; set; }
-        public Guid? AccountId { get; set; }
+        public Account Account { get; set; }
+        public Guid AccountId { get; set; }
         public ICollection<Order>? Orders { get; set; }
     }
 }

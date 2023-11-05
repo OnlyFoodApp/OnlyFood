@@ -10,6 +10,7 @@ namespace Application.Features.Comments.Queries
 {
     public class GetAllCommentsDto : IMapFrom<Comment>
     {
+        public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public Guid PostId { get; set; }
         public string Text { get; set; }

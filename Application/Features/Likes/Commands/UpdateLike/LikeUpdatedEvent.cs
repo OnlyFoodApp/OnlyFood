@@ -14,9 +14,9 @@ namespace Application.Features.Likes.Commands.UpdateLike
         public Like Like { get; }
 
 
-        public LikeUpdatedEvent(Like Like)
+        public LikeUpdatedEvent(Like like)
         {
-            Like = Like;
+            Like = like;
         }
     }
 }

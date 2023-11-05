@@ -10,12 +10,12 @@ namespace Application.Features.Dishs.Commands
 {
     public class DishCreateEvent : BaseEvent
     {
-        public DishCategory DishCategory { get; }
+        public Dish Dish { get; }
 
 
-        public DishCreateEvent(Dish Dish)
+        public DishCreateEvent(Dish dish)
         {
-            Dish = Dish;
+            Dish = dish;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace Domain.Entities
         public string? Awards { get; set; }
 
         // Navigation Property
-        public virtual Account? Account { get; set; }
-        public Guid? AccountId { get; set; }
+        public virtual Account Account { get; set; }
+        public Guid AccountId { get; set; }
         public virtual ICollection<Campaign>? Campaigns { get; set; }
         public virtual ICollection<Certification>? Certifications { get; set; }
 

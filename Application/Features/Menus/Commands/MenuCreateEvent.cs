@@ -13,9 +13,9 @@ namespace Application.Features.Menus.Commands
         public Menu Menu { get; }
 
 
-        public MenuCreateEvent(Menu Menu)
+        public MenuCreateEvent(Menu menu)
         {
-            Menu = Menu;
+            Menu = menu;
         }
     }
 }

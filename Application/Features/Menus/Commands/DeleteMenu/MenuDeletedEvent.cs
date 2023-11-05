@@ -14,9 +14,9 @@ namespace Application.Features.Menus.Commands.DeleteMenu
         public Menu Menu { get; }
 
 
-        public MenuDeletedEvent(Menu Menu)
+        public MenuDeletedEvent(Menu menu)
         {
-            Menu = Menu;
+            Menu = menu;
         }
     }
 }

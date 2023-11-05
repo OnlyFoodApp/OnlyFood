@@ -14,9 +14,9 @@ namespace Application.Features.Posts.Commands.UpdatePost
         public Post Post { get; }
 
 
-        public PostUpdatedEvent(Post Post)
+        public PostUpdatedEvent(Post post)
         {
-            Post = Post;
+            Post = post;
         }
     }
 }

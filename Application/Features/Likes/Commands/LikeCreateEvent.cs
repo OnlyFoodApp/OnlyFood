@@ -15,9 +15,9 @@ namespace Application.Features.Likes.Commands
         public Like Like { get; }
 
 
-        public LikeCreateEvent(Like Like)
+        public LikeCreateEvent(Like like)
         {
-            Like = Like;
+            Like = like;
         }
     }
 }

@@ -14,9 +14,9 @@ namespace Application.Features.DishCategorys.Commands
         public DishCategory DishCategory { get; }
 
 
-        public DishCategoryCreateEvent(DishCategory DishCategory)
+        public DishCategoryCreateEvent(DishCategory dishCategory)
         {
-            DishCategory = DishCategory;
+            DishCategory = dishCategory;
         }
     }
 }

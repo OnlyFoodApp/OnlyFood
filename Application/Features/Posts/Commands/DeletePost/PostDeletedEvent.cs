@@ -14,9 +14,9 @@ namespace Application.Features.Posts.Commands.DeletePost
         public Post Post { get; }
 
 
-        public PostDeletedEvent(Post Post)
+        public PostDeletedEvent(Post post)
         {
-            Post = Post;
+            Post = post;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace Application.Features.Comments.Commands
         public Comment Comment { get; }
 
 
-        public CommentCreateEvent(Comment Comment)
+        public CommentCreateEvent(Comment comment)
         {
-            Comment = Comment;
+            Comment = comment;
         }
     }
 }
