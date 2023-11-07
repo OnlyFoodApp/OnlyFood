@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 using Application.Extensions;
+using Azure.Storage.Blobs;
 using Infrastructure.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -45,7 +46,6 @@ namespace OnlyFoodApp
                 options.AddDefaultPolicy(
                     builder =>
                     {
-
                         //you can configure your custom policy
                         builder.AllowAnyOrigin()
                             .AllowAnyHeader()
@@ -99,7 +99,7 @@ namespace OnlyFoodApp
                 });
             });
             builder.Services.AddMvc();
-
+            builder.Services.AddScoped(_ => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobStorage")));
             var app = builder.Build();
 
             app.UseSwagger();
