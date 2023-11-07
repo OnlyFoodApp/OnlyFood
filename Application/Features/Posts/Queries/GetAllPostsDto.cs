@@ -10,7 +10,7 @@ namespace Application.Features.Posts.Queries
 {
     public class GetAllPostsDto : IMapFrom<Post>
     {
-        
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public Guid AccountID { get; set; }
@@ -18,6 +18,7 @@ namespace Application.Features.Posts.Queries
         public string MediaURLs { get; set; }
         public byte IsDeleted { get; set; }
         public byte IsEdited { get; set; }
+        public Account Account { get; set; }
 
     }
 }

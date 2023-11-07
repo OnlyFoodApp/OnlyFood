@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Comments.Queries
+namespace Application.Features.Chefs.Queries.GetCommemtByPostId
 {
-    public class GetAllCommentsDto : IMapFrom<Comment>
+    public class GetCommemtByPostIdDto : IMapFrom<Comment>
     {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
@@ -19,6 +19,5 @@ namespace Application.Features.Comments.Queries
         public byte IsDeleted { get; set; }
 
         public byte ISEdited { get; set; }
-
     }
 }

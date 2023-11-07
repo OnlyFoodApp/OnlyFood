@@ -29,11 +29,9 @@ namespace Application.Features.Posts.Queries
 
         public async Task<Result<List<GetAllPostsDto>>> Handle(GetAllPostsQuery request, CancellationToken cancellationToken)
         {
-
             var posts = await _unitOfWork.Repository<Post>().Entities
                 .ProjectTo<GetAllPostsDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
-
             return await Result<List<GetAllPostsDto>>.SuccessAsync(posts);
         }
     }

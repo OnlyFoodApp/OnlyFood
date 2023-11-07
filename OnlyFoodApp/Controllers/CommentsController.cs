@@ -8,6 +8,8 @@ using Shared;
 using System.Net;
 using Application.Features.Comments.Commands.UpdateComments;
 using Application.Features.Comments.Commands.DeleteComments;
+using Application.Features.Chefs.Queries.GetChefWithId;
+using Application.Features.Chefs.Queries.GetCommemtByPostId;
 
 namespace OnlyFoodApp.Controllers
 {
@@ -32,6 +34,14 @@ namespace OnlyFoodApp.Controllers
             var a = comment;
             return await _mediator.Send(comment);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Result<List<GetCommemtByPostIdDto>>>> GetCommemtByPostIdAsync(String id)
+        {
+            return await _mediator.Send(new GetCommemtByPostIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
+        }
+
+
+
         [HttpPut]
         [Route("{id}")]
         public async Task<Status> Update(Guid id, UpdateCommentCommand command)
