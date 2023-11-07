@@ -8,8 +8,7 @@ using Shared;
 using System.Net;
 using Application.Features.Comments.Commands.UpdateComments;
 using Application.Features.Comments.Commands.DeleteComments;
-using Application.Features.Chefs.Queries.GetChefWithId;
-using Application.Features.Chefs.Queries.GetCommemtByPostId;
+using Application.Features.Posts.Queries.GetCommemtByPostId;
 
 namespace OnlyFoodApp.Controllers
 {

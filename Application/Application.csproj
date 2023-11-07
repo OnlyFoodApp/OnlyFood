@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Chefs\Queries\GetChefWithEmail\" />
-    <Folder Include="Features\Customers\Commands\DeleteCustomer\" />
-    <Folder Include="Features\Customers\Commands\UpdateCustomer\" />
   </ItemGroup>
 
 </Project>

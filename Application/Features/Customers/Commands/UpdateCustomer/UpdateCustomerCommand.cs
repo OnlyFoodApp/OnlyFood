@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Common.Mappings;
-using Application.Features.Accounts.Commands.CreateAccount;
-using Application.Features.Accounts.Commands.DeleteAccount;
 using Application.Features.Accounts.Commands.UpdateAccount;
-using Application.Features.Chef.Commands.UpdateChef;
 using Application.Interfaces.Repositories;
 using AutoMapper;
 using Domain.Entities;
@@ -15,9 +12,9 @@ using Domain.Enums;
 using MediatR;
 using Shared;
 
-namespace Application.Features.Chefs.Commands.UpdateChef
+namespace Application.Features.Customers.Commands.UpdateCustomer
 {
-    public class UpdateChefCommand : IRequest<Result<Guid>>, IMapFrom<Account>
+    public class UpdateCustomerCommand : IRequest<Result<Guid>>, IMapFrom<Account>
     {
         public Guid Id { get; set; }
         public string Username { get; set; }
@@ -29,30 +26,30 @@ namespace Application.Features.Chefs.Commands.UpdateChef
         public DateTime DateOfBirth { get; set; }
         public GenderEnum Gender { get; set; }
         public int Roles { get; set; }
-        public string Experience { get; set; }
-        public string? Awards { get; set; }
+        public int RewardsPoints { get; set; }
+        public string? Address { get; set; }
 
     }
 
-    internal class UpdateChefCommandHandler : IRequestHandler<UpdateChefCommand, Result<Guid>>
+    internal class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, Result<Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public UpdateChefCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateCustomerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public async Task<Result<Guid>> Handle(UpdateChefCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
         {
 
 
-            var chef = await _unitOfWork.Repository<Domain.Entities.Chef>().GetByIdAsync(command.Id);
-            if (chef != null)
+            var customer = await _unitOfWork.Repository<Customer>().GetByIdAsync(command.Id);
+            if (customer != null)
             {
-                var account = await _unitOfWork.Repository<Account>().GetByIdAsync(chef.AccountId);
+                var account = await _unitOfWork.Repository<Account>().GetByIdAsync(customer.AccountId);
                 if (account != null)
                 {
                     account.Username = command.Username;
@@ -69,20 +66,20 @@ namespace Application.Features.Chefs.Commands.UpdateChef
                     await _unitOfWork.Repository<Account>().UpdateAsync(account);
                     account.AddDomainEvent(new AccountUpdatedEvent(account));
 
-                    chef.Experience = command.Experience;
-                    chef.Awards = command.Awards;
-                    await _unitOfWork.Repository<Domain.Entities.Chef>().UpdateAsync(chef);
-                    chef.AddDomainEvent(new ChefUpdatedEvent(chef));
+                    customer.Address = command.Address;
+                    customer.RewardsPoints = command.RewardsPoints;
+                    await _unitOfWork.Repository<Customer>().UpdateAsync(customer);
+                    customer.AddDomainEvent(new CustomerUpdatedEvent(customer));
 
                     await _unitOfWork.Save(cancellationToken);
 
-                    return await Result<Guid>.SuccessAsync(account.Id, "Chef Deleted.");
+                    return await Result<Guid>.SuccessAsync(account.Id, "Customer Updated.");
                 }
-                return await Result<Guid>.FailureAsync("Chef Not Found.");
+                return await Result<Guid>.FailureAsync("Customer Not Found.");
             }
             else
             {
-                return await Result<Guid>.FailureAsync("Chef Not Found.");
+                return await Result<Guid>.FailureAsync("Customer Not Found.");
             }
         }
     }

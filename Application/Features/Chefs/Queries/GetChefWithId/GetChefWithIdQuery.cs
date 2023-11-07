@@ -29,17 +29,9 @@ namespace Application.Features.Chefs.Queries.GetChefWithId
 
         public async Task<Result<GetChefWithIdDto>> Handle(GetChefWithIdQuery request, CancellationToken cancellationToken)
         {
-            var account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id.Equals(request.id))
+            var account = await _unitOfWork.Repository<Domain.Entities.Chef>().Entities.Where(a => a.Id.Equals(request.id))
                 .ProjectTo<GetChefWithIdDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync(cancellationToken);
-
-            var chef = await _unitOfWork.Repository<Domain.Entities.Chef>().Entities.Where(a => a.AccountId.Equals(request.id))
-                .ProjectTo<GetChefWithIdDto>(_mapper.ConfigurationProvider)
-                .SingleOrDefaultAsync(cancellationToken);
-
-
-            account.Awards = chef.Awards;
-            account.Experience = chef.Experience;
 
             return await Result<GetChefWithIdDto>.SuccessAsync(account);
         }

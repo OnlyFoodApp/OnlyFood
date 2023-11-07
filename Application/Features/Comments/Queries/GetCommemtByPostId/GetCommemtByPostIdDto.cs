@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Chefs.Queries.GetCommemtByPostId
+namespace Application.Features.Posts.Queries.GetCommemtByPostId
 {
     public class GetCommemtByPostIdDto : IMapFrom<Comment>
     {

@@ -10,18 +10,12 @@ namespace Application.Features.Chefs.Queries.GetChefWithId
 {
     public class GetChefWithIdDto : IMapFrom<Account>, IMapFrom<Domain.Entities.Chef>
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public Enum Gender { get; set; }
-        public string ProfilePicture { get; set; }
-        public string Bio { get; set; }
-        public int Roles { get; set; }
-        public string? Experience { get; set; } 
+        public Guid Id { get; set; }
+        public string? Experience { get; set; }
         public string? Awards { get; set; }
+
+        // Navigation Property
+        public virtual Account Account { get; set; }
+        public Guid AccountId { get; set; }
     }
 }

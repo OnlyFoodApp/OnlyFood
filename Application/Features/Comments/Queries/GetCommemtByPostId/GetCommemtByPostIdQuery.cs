@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Features.Chefs.Queries.GetCommemtByPostId
+namespace Application.Features.Posts.Queries.GetCommemtByPostId
 {
     public record GetCommemtByPostIdQuery(Guid id) : IRequest<Result<List<GetCommemtByPostIdDto>>>;
 

@@ -12,33 +12,33 @@ using Domain.Enums;
 using MediatR;
 using Shared;
 
-namespace Application.Features.Chefs.Commands.DeleteChef
+namespace Application.Features.Customers.Commands.DeleteCustomer
 {
-    public class DeleteChefCommand : IRequest<Result<Guid>>, IMapFrom<Account>
+    public class DeleteCustomerCommand : IRequest<Result<Guid>>, IMapFrom<Account>
     {
         public Guid Id { get; set; }
 
     }
 
-    internal class DeleteChefCommandHandler : IRequestHandler<DeleteChefCommand, Result<Guid>>
+    internal class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustomerCommand, Result<Guid>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public DeleteChefCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public DeleteCustomerCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public async Task<Result<Guid>> Handle(DeleteChefCommand command, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(DeleteCustomerCommand command, CancellationToken cancellationToken)
         {
 
 
-            var chef = await _unitOfWork.Repository<Domain.Entities.Chef>().GetByIdAsync(command.Id);
-            if (chef != null)
+            var customer = await _unitOfWork.Repository<Customer>().GetByIdAsync(command.Id);
+            if (customer != null)
             {
-                var account = await _unitOfWork.Repository<Account>().GetByIdAsync(chef.AccountId);
+                var account = await _unitOfWork.Repository<Account>().GetByIdAsync(customer.AccountId);
                 if (account != null)
                 {
                     account.ActiveStatus = 0;
@@ -49,13 +49,13 @@ namespace Application.Features.Chefs.Commands.DeleteChef
 
                     await _unitOfWork.Save(cancellationToken);
 
-                    return await Result<Guid>.SuccessAsync(account.Id, "Chef Deleted.");
+                    return await Result<Guid>.SuccessAsync(account.Id, "Customer Deleted.");
                 }
-                return await Result<Guid>.FailureAsync("Chef Not Found.");
+                return await Result<Guid>.FailureAsync("Customer Not Found.");
             }
             else
             {
-                return await Result<Guid>.FailureAsync("Chef Not Found.");
+                return await Result<Guid>.FailureAsync("Customer Not Found.");
             }
         }
     }

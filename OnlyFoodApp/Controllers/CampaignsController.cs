@@ -1,4 +1,5 @@
 ﻿using Application.Common.Response;
+using Application.Features.Campaigns.Queries.GetCampaignById;
 using Application.Features.Campaigns.Commands.CreateCampaign;
 using Application.Features.Campaigns.Commands.DeleteCampaign;
 using Application.Features.Campaigns.Commands.UpdateCampaign;
@@ -32,6 +33,14 @@ namespace OnlyFoodApp.Controllers
         {
             var a = campaign;
             return await _mediator.Send(campaign);
+        }
+
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<Result<GetCampaignWithIdDto>>> GetCampaignByIdAsync(String id)
+        {
+            return await _mediator.Send(new GetCampaignWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
         }
 
         [HttpPut]

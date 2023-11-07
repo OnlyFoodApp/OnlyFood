@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using System.Net;
-
+using Application.Features.Certifications.Queries.GetCertificationById;
 
 namespace OnlyFoodApp.Controllers
 {
@@ -33,6 +33,14 @@ namespace OnlyFoodApp.Controllers
             var a = certification;
             return await _mediator.Send(certification);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult<Result<GetCertificationWithIdDto>>> GetCertificationByIdAsync(String id)
+        {
+            return await _mediator.Send(new GetCertificationWithIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
+        }
+
         [HttpPut]
         [Route("{id}")]
         public async Task<Status> Update(Guid id, UpdateCertificationCommand command)
