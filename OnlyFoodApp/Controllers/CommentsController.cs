@@ -33,6 +33,7 @@ namespace OnlyFoodApp.Controllers
             var a = comment;
             return await _mediator.Send(comment);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Result<List<GetCommemtByPostIdDto>>>> GetCommemtByPostIdAsync(String id)
         {
