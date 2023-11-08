@@ -16,8 +16,7 @@ namespace Application.Features.Campaigns.Queries.GetAllCampaigns
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Guid ChefID { get; set; }
-
-        public Domain.Entities.Chef Chef { get; set; }
+        public string Username { get; set; }
         public byte Status { get; set; }
     }
 }

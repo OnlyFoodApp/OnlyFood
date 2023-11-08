@@ -33,6 +33,18 @@ namespace Application.Features.Campaigns.Queries.GetAllCampaigns
             var campaigns = await _unitOfWork.Repository<Campaign>().Entities
                 .ProjectTo<GetAllCampaignsDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+            foreach (var campaign in campaigns)
+            {
+                var chef = await _unitOfWork.Repository<Domain.Entities.Chef>().Entities.Where(c => c.Id == campaign.ChefID)
+                .SingleOrDefaultAsync(cancellationToken);
+                if (chef != null)
+                {
+                    var  account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id == chef.AccountId)
+                    .SingleOrDefaultAsync(cancellationToken);
+                    if(account != null)
+                    campaign.Username = account.Username;
+                }
+            }
 
             return await Result<List<GetAllCampaignsDto>>.SuccessAsync(campaigns);
         }
