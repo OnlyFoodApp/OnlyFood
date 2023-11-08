@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Posts.Queries.GetCommemtByPostId
 {
-    public class GetCommemtByPostIdDto : IMapFrom<Comment>
+    public class GetCommemtByPostIdDto : IMapFrom<Comment>, IMapFrom<Account>
     {
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
@@ -17,7 +17,7 @@ namespace Application.Features.Posts.Queries.GetCommemtByPostId
         public int? DisplayIndex { get; set; }
         public Guid? ParentCommentId { get; set; }
         public byte IsDeleted { get; set; }
-        public Account Account { get; set; }
+        public string Username { get; set; }
         public byte ISEdited { get; set; }
     }
 }

@@ -35,6 +35,15 @@ namespace Application.Features.Posts.Queries.GetCommemtByPostId
                 .ToListAsync(cancellationToken);
 
 
+
+            foreach (var comment in comments)
+            {
+                var account = await _unitOfWork.Repository<Account>().Entities.Where(a => a.Id.Equals(comment.AccountId))
+                .SingleOrDefaultAsync(cancellationToken);
+                if(account != null)
+                comment.Username = account.Username;
+            }
+
             return await Result<List<GetCommemtByPostIdDto>>.SuccessAsync(comments);
         }
     }
