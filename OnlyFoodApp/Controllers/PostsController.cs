@@ -7,6 +7,7 @@ using Application.Features.Posts.Commands.DeletePost;
 using Application.Features.Posts.Commands.UpdatePost;
 using Application.Features.Posts.Queries;
 using Application.Features.Posts.Queries.GetCommemtByPostId;
+using Application.Features.Posts.Queries.GetPostByAccountId;
 using Application.Features.Posts.Queries.GetPostById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,12 @@ namespace OnlyFoodApp.Controllers
         public async Task<ActionResult<Result<GetPostByIdDto>>> GetPostByPostIdAsync(String id)
         {
             return await _mediator.Send(new GetPostByPostIdQuery(Guid.Parse((ReadOnlySpan<char>)id)));
+        }
+
+        [HttpGet("all/accounts/{accountId}")]
+        public async Task<ActionResult<Result<List<GetPostByAccountIdDto>>>> GetPostByAccountIdAsync(String accountId)
+        {
+            return await _mediator.Send(new GetPostByAccountIdQuery(Guid.Parse((ReadOnlySpan<char>)accountId)));
         }
 
         [HttpPut("{id}")]
