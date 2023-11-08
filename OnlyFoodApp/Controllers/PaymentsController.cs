@@ -20,6 +20,8 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
+
         public async Task<ActionResult<Result<List<GetAllPaymentsDto>>>> GetAllPaymentAsync()
         {
             return await _mediator.Send(new GetAllPaymentsQuery());

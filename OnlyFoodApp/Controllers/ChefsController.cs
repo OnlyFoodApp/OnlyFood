@@ -26,6 +26,7 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
         public async Task<ActionResult<Result<List<GetAllChefsDto>>>> GetAllAccountAsync()
         {
             return await _mediator.Send(new GetAllChefsQuery());

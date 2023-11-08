@@ -20,6 +20,8 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
+
         public async Task<ActionResult<Result<List<GetAllLikesDto>>>> GetAll()
         {
             return await _mediator.Send(new GetAllLikesQuery());

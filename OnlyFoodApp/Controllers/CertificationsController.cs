@@ -22,6 +22,8 @@ namespace OnlyFoodApp.Controllers
         }
 
         [HttpGet]
+        [Route("all")]
+
         public async Task<ActionResult<Result<List<GetAllCertificationsDto>>>> GetAll()
         {
             return await _mediator.Send(new GetAllCertificationsQuery());

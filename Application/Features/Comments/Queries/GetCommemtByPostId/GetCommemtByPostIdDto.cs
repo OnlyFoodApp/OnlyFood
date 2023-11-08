@@ -17,7 +17,7 @@ namespace Application.Features.Posts.Queries.GetCommemtByPostId
         public int? DisplayIndex { get; set; }
         public Guid? ParentCommentId { get; set; }
         public byte IsDeleted { get; set; }
-
+        public Account Account { get; set; }
         public byte ISEdited { get; set; }
     }
 }
