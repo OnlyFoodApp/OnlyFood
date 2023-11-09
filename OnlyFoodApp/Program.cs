@@ -49,8 +49,7 @@ namespace OnlyFoodApp
                         //you can configure your custom policy
                         builder.AllowAnyOrigin()
                             .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials();
+                            .AllowAnyMethod();
                     });
             });
             builder.Services.AddControllersWithViews(options =>
