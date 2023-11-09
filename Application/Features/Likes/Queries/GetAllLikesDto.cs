@@ -11,6 +11,7 @@ namespace Application.Features.Likes.Queries
     
     public class GetAllLikesDto : IMapFrom<Like>
     {
+        public Guid Id { get; set; }
         public Guid PostId { get; set; }
 
         public Guid AccountId { get; set; }

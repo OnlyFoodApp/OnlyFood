@@ -10,6 +10,7 @@ namespace Application.Features.Menus.Queries
 {
     public class GetAllMenusDto : IMapFrom<Menu>
     {
+        public Guid Id { get; set; }
         public byte IsDeleted { get; set; }
         public byte IsEdited { get; set; }
         public Guid CampaignId { get; set; }

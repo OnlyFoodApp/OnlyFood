@@ -10,6 +10,7 @@ namespace Application.Features.Dishs.Queries
 {
     public class GetAllDishsDto : IMapFrom<Dish>
     {
+        public Guid Id { get; set; }
         public string DishName { get; set; }
         public Guid MenuId { get; set; }
         public Guid DishCategoryId { get; set; }

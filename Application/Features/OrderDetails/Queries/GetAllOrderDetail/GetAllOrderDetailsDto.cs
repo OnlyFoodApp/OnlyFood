@@ -12,7 +12,7 @@ namespace Application.Features.OrderDetails.Queries.GetAllOrderDetail
     public class GetAllOrderDetailsDto : IMapFrom<OrderDetail>
     {
         
-        
+        public Guid Id { get; set; }
         public Guid DishId { get; set; }
         public int Quantity { get; set; }
         public float UnitPrice { get; set; }
