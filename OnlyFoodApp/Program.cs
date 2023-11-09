@@ -118,7 +118,7 @@ namespace OnlyFoodApp
 
 
             app.MapControllers();
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors();
 
             app.Run();
         }
