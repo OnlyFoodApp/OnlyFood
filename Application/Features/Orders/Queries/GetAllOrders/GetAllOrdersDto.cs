@@ -14,6 +14,7 @@ namespace Application.Features.Orders.Queries.GetAllOrders
         public DateTime OrderDate { get; set; }
         public Guid CustomerId { get; set; }
         public string CustomerName { get; set; }
+        public Guid PaymentId { get; set; }
         public string PaymentName { get; set; }
         public DateTime ExpectedDeliveryTime { get; set; }
         public float TotalAmount { get; set; }
