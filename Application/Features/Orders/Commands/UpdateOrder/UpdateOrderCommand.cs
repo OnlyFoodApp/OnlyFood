@@ -18,9 +18,7 @@ namespace Application.Features.Orders.Commands.UpdateOrder
         public Guid Id { get; set; }
         public DateTime OrderDate { get; set; }
         public Guid CustomerId { get; set; }
-        public string CustomerName { get; set; }
         public Guid PaymentId { get; set; }
-        public string PaymentName { get; set; }
         public DateTime ExpectedDeliveryTime { get; set; }
         public float TotalAmount { get; set; }
         public int NumberOfItems { get; set; }
@@ -53,18 +51,6 @@ namespace Application.Features.Orders.Commands.UpdateOrder
                 order.Status = command.Status;
                 order.ModifiedBy = command.Id;
                 order.LastModifiedDate = DateTime.Now;
-
-                var customer = await _unitOfWork.Repository<Customer>().GetByIdAsync(command.CustomerId);
-                if(customer != null)
-                {
-                    customer.Account.LastName = command.CustomerName;
-                }
-
-                var payment = await _unitOfWork.Repository<Payment>().GetByIdAsync(command.PaymentId);
-                if (payment != null)
-                {
-                    payment.Name = command.PaymentName;
-                }
                 await _unitOfWork.Repository<Order>().UpdateAsync(order);
                 order.AddDomainEvent(new OrderUpdatedEvent(order));
 
