@@ -10,6 +10,7 @@ namespace Application.Features.Orders.Queries.GetAllOrders
 {
     public class GetAllOrdersDto : IMapFrom<Order>
     {
+        public Guid Id { get; set; }
         public DateTime OrderDate { get; set; }
         public Guid CustomerId { get; set; }
         public string CustomerName { get; set; }
