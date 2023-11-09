@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace OnlyFoodApp.Controllers
 {
 
-    [Route("api/token")]
+    [Route("api/v1/auth/login")]
     [ApiController]
     public class TokenController : ControllerBase
     {
