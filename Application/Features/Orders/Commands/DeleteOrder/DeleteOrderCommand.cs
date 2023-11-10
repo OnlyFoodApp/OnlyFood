@@ -16,6 +16,16 @@ namespace Application.Features.Orders.Commands.DeleteOrder
     public class DeleteOrderCommand : IRequest<Result<Guid>>
     {
         public Guid Id { get; set; }
+
+        public DeleteOrderCommand()
+        {
+
+        }
+
+        public DeleteOrderCommand(Guid id)
+        {
+            Id = id;
+        }
     }
 
     internal class UpdateOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Result<Guid>>

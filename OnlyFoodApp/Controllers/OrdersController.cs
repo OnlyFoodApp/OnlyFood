@@ -10,6 +10,7 @@ using Application.Features.Orders.Queries.GetEarningDataOfCustomerBaseOnOrder;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace OnlyFoodApp.Controllers
 {
@@ -45,14 +46,10 @@ namespace OnlyFoodApp.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult<Result<Guid>>> Delete(Guid id, DeleteOrderCommand command)
+        public async Task<ActionResult<Result<Guid>>> Delete(Guid id)
         {
-            if (!id.Equals(command.Id))
-            {
-                return BadRequest();
-            }
 
-            return await _mediator.Send(command);
+            return await _mediator.Send(new DeleteOrderCommand(id));
         }
 
         [HttpPut]
