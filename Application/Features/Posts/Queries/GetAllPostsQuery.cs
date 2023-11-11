@@ -29,7 +29,7 @@ namespace Application.Features.Posts.Queries
 
         public async Task<Result<List<GetAllPostsDto>>> Handle(GetAllPostsQuery request, CancellationToken cancellationToken)
         {
-            var posts = await _unitOfWork.Repository<Post>().Entities
+            var posts = await _unitOfWork.Repository<Post>().Entities.OrderBy(c => c.DisplayIndex).OrderByDescending(p => p.CreatedDate)
                 .ProjectTo<GetAllPostsDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
             return await Result<List<GetAllPostsDto>>.SuccessAsync(posts);
